@@ -32,7 +32,7 @@ const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
   const copiarCoordenada = async (latitude: number, longitude: number) => {
     const texto = `${latitude},${longitude}`
     await Clipboard.setStringAsync(texto)
-    Toast.success('As coordenadas foram copiadas para a área de transferência.')
+    Toast.success('As coordenadas foram copiadas.')
   }
 
   return (
