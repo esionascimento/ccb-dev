@@ -37,7 +37,14 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.safeArea}>
-        <ToastManager />
+        <ToastManager
+          textStyle={{
+            fontSize: 16,
+          }}
+          showProgressBar={false}
+          duration={2000}
+          position="bottom"
+        />
         <ThemeProvider
           value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
         >
