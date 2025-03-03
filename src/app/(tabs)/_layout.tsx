@@ -7,11 +7,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import { HapticTab } from '@/src/components/HapticTab'
 import { IconSymbol } from '@/src/components/ui/IconSymbol'
 import TabBarBackground from '@/src/components/ui/TabBarBackground'
-import { useColorScheme } from '@/src/hooks/useColorScheme'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme()
-
   return (
     <>
       <SafeAreaProvider>
@@ -39,7 +36,7 @@ export default function TabLayout() {
               }}
             />
             <Tabs.Screen
-              name="explore"
+              name="casa-oracao"
               options={{
                 title: 'Casa de Oração',
                 tabBarIcon: ({ color }) => (
