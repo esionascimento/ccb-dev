@@ -4,7 +4,7 @@ export interface Coordenada {
   latitude: number
   longitude: number
   atualizacao: string
-  endereco: Endereco
+  endereco?: Endereco
   diasCulto?: {
     cultos: string
     reuniaoJovemMenores: string
