@@ -9,9 +9,8 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import { StyleSheet } from 'react-native'
 import ToastManager from 'toastify-react-native'
+import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper'
 
 import { useColorScheme } from '@/src/hooks/useColorScheme'
 
@@ -20,6 +19,7 @@ SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
+  const theme = colorScheme === 'dark' ? MD3DarkTheme : MD3LightTheme
   const [loaded] = useFonts({
     SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
   })
@@ -35,16 +35,8 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.safeArea}>
-        <ToastManager
-          textStyle={{
-            fontSize: 16,
-          }}
-          showProgressBar={false}
-          duration={2000}
-          position="bottom"
-        />
+    <>
+      <PaperProvider theme={theme}>
         <ThemeProvider
           value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
         >
@@ -53,12 +45,16 @@ export default function RootLayout() {
             <Stack.Screen name="+not-found" />
           </Stack>
           <StatusBar style="auto" />
+          <ToastManager
+            textStyle={{
+              fontSize: 16,
+            }}
+            showProgressBar={false}
+            duration={2000}
+            position="bottom"
+          />
         </ThemeProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+      </PaperProvider>
+    </>
   )
 }
-
-const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#fff' },
-})
