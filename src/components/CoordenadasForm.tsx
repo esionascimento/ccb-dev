@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
+import { TextInput } from 'react-native-paper'
 import { Coordenada } from '../models/Coordenada'
 
 interface Props {
@@ -18,6 +19,7 @@ const CoordenadasForm: React.FC<Props> = ({ onAdicionar }) => {
     if (!nome || isNaN(lat) || isNaN(lon)) return
 
     onAdicionar({
+      id: '1231',
       nome,
       latitude: lat,
       longitude: lon,
@@ -32,21 +34,21 @@ const CoordenadasForm: React.FC<Props> = ({ onAdicionar }) => {
   return (
     <View style={styles.container}>
       <TextInput
+        label={'Nome do Local'}
         style={styles.input}
-        placeholder="Nome do Local"
         value={nome}
         onChangeText={setNome}
       />
       <TextInput
+        label={'Latitude'}
         style={styles.input}
-        placeholder="Latitude"
         keyboardType="numeric"
         value={latitude}
         onChangeText={setLatitude}
       />
       <TextInput
+        label={'Longitude'}
         style={styles.input}
-        placeholder="Longitude"
         keyboardType="numeric"
         value={longitude}
         onChangeText={setLongitude}
@@ -57,11 +59,8 @@ const CoordenadasForm: React.FC<Props> = ({ onAdicionar }) => {
 }
 
 const styles = StyleSheet.create({
-  container: { marginBottom: 10 },
+  container: { marginBottom: 8 },
   input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
     marginVertical: 5,
     borderRadius: 5,
   },
