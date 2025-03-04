@@ -6,8 +6,14 @@ export interface Coordenada {
   atualizacao: string
   endereco?: Endereco
   diasCulto?: {
-    cultos: string
-    reuniaoJovemMenores: string
+    cultos: {
+      dia: string
+      horario: string
+    }[]
+    reuniaoJovemMenores?: {
+      dia: string
+      horario: string
+    }[]
   }
   ministerio?: {
     cooperadorOficioMinisterial: string
