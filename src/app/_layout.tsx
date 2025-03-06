@@ -9,10 +9,11 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
-import ToastManager from 'toastify-react-native'
+import ToastManager, { Toast } from 'toastify-react-native'
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper'
 
 import { useColorScheme } from '@/src/hooks/useColorScheme'
+import { fetchEstados } from '../services/ibge/ibge.service'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -34,6 +35,17 @@ export default function RootLayout() {
     return null
   }
 
+  // useEffect(() => {
+  //   // Carrega os estados em segundo plano ao iniciar o app
+  //   fetchEstados()
+  //     .then(() => {
+  //       Toast.success('Estados carregados!')
+  //     })
+  //     .catch((error) => {
+  //       Toast.error('Error carregar estados!')
+  //     })
+  // }, [])
+
   return (
     <>
       <PaperProvider theme={theme}>
@@ -50,7 +62,7 @@ export default function RootLayout() {
               fontSize: 16,
             }}
             showProgressBar={false}
-            duration={2000}
+            duration={8000}
             position="bottom"
           />
         </ThemeProvider>
