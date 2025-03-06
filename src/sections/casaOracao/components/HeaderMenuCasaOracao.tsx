@@ -2,19 +2,22 @@ import { View } from 'react-native'
 import { IconButton, Menu } from 'react-native-paper'
 
 type Props = {
-  setModalVisible: any
-  isMenu: any
-  setMenu: any
+  isMenu: boolean
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
+  setMenu: React.Dispatch<React.SetStateAction<boolean>>
+  handleResetCoordenadas: () => void
 }
 
 export const HeaderMenuCasaOracao = ({
   setModalVisible,
   isMenu,
   setMenu,
+  handleResetCoordenadas,
 }: Props) => {
-  const handle = (name: 'filtro') => {
-    if ((name = 'filtro')) setModalVisible(true)
+  const handle = (name: 'filtro' | 'reset') => {
     setMenu(false)
+    if (name === 'filtro') return setModalVisible(true)
+    if (name === 'reset') return handleResetCoordenadas()
   }
 
   return (
@@ -31,7 +34,11 @@ export const HeaderMenuCasaOracao = ({
         }
         anchorPosition="bottom"
       >
-        <Menu.Item onPress={() => handle('filtro')} title="Filtrar" />
+        <Menu.Item
+          onPress={() => handle('filtro')}
+          title="Filtrar por Cidade"
+        />
+        <Menu.Item onPress={() => handle('reset')} title="Limpar Filtro" />
       </Menu>
     </View>
   )
