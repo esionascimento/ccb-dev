@@ -19,6 +19,7 @@ export const mockCoordenadas: Coordenada[] = [
         { dia: 'quinta', horario: '19:30' },
       ],
       reuniaoJovemMenores: [{ dia: 'domingo', horario: '10:00' }],
+      ensaio: { semana: 2, dia: 2, horario: '19:30' },
     },
   },
   {
@@ -39,6 +40,27 @@ export const mockCoordenadas: Coordenada[] = [
         { dia: 'quarta', horario: '19:30' },
       ],
       reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+    },
+  },
+  {
+    id: '942312',
+    nome: 'CCB Castanheira(Gurgel)',
+    latitude: -8.796694350758013,
+    longitude: -63.86694646348956,
+    atualizacao: '07/03/2025',
+    endereco: {
+      cep: 76811544,
+      logradouro: 'Rua Cacique Tibiriçá',
+      numero: 1815,
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 'domingo', horario: '19:00' },
+        { dia: 'terca', horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+      ensaio: { semana: 2, dia: 7, horario: '19:30' },
     },
   },
   {
