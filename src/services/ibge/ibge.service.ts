@@ -31,55 +31,51 @@ const fetchCidadesDaAPI = async (uf: string): Promise<Cidade[]> => {
 }
 
 // Salva estados no AsyncStorage
-// const salvarEstados = async (estados: Estado[]) => {
-//   await AsyncStorage.setItem(CHAVE_ESTADOS, JSON.stringify(estados))
-//   await AsyncStorage.setItem(CHAVE_ULTIMA_ATUALIZACAO, new Date().toISOString())
-// }
+const salvarEstados = async (estados: Estado[]) => {
+  await AsyncStorage.setItem(CHAVE_ESTADOS, JSON.stringify(estados))
+  await AsyncStorage.setItem(CHAVE_ULTIMA_ATUALIZACAO, new Date().toISOString())
+}
 
 // Carrega estados do AsyncStorage
-// const carregarEstados = async (): Promise<Estado[] | null> => {
-//   const estadosJSON = await AsyncStorage.getItem(CHAVE_ESTADOS)
-//   return estadosJSON ? JSON.parse(estadosJSON) : null
-// }
+const carregarEstados = async (): Promise<Estado[] | null> => {
+  const estadosJSON = await AsyncStorage.getItem(CHAVE_ESTADOS)
+  return estadosJSON ? JSON.parse(estadosJSON) : null
+}
 
 // Verifica se os dados estão desatualizados (mais de 1 dia)
-// const dadosPrecisamSerAtualizados = async (): Promise<boolean> => {
-//   try {
-//     const ultimaAtualizacaoJSON = await AsyncStorage.getItem(
-//       CHAVE_ULTIMA_ATUALIZACAO,
-//     )
-//     if (!ultimaAtualizacaoJSON) return true
+const dadosPrecisamSerAtualizados = async (): Promise<boolean> => {
+  try {
+    const ultimaAtualizacaoJSON = await AsyncStorage.getItem(
+      CHAVE_ULTIMA_ATUALIZACAO,
+    )
+    if (!ultimaAtualizacaoJSON) return true
 
-//     const ultimaAtualizacao = new Date(ultimaAtualizacaoJSON)
-//     const hoje = new Date()
-//     const diferencaEmDias = Math.floor(
-//       (hoje.getTime() - ultimaAtualizacao.getTime()) / (1000 * 60 * 60 * 24),
-//     )
+    const ultimaAtualizacao = new Date(ultimaAtualizacaoJSON)
+    const hoje = new Date()
+    const diferencaEmDias = Math.floor(
+      (hoje.getTime() - ultimaAtualizacao.getTime()) / (1000 * 60 * 60 * 24),
+    )
 
-//     return diferencaEmDias >= 1
-//   } catch (error) {
-//     Toast.error('Erro ler AsyncStorage')
-//     return true
-//   }
-// }
+    return diferencaEmDias >= 1
+  } catch (error) {
+    Toast.error('Erro ler AsyncStorage')
+    return true
+  }
+}
 
 // Busca estados (da API ou do AsyncStorage)
 export const fetchEstados = async (): Promise<Estado[]> => {
-  Toast.info('INFO: 2 - fetchEstados')
+  const precisaAtualizar = await dadosPrecisamSerAtualizados()
 
-  // const precisaAtualizar = await dadosPrecisamSerAtualizados()
-  // Toast.info('INFO: 3 - precisaAtualizar')
+  if (precisaAtualizar) {
+    const estados = await fetchEstadosDaAPI()
 
-  // if (precisaAtualizar) {
-  const estados = await fetchEstadosDaAPI()
-  Toast.info('INFO: 4 - ENTROU - precisaAtualizar')
+    await salvarEstados(estados)
+    return estados
+  }
 
-  // await salvarEstados(estados)
-  return estados
-  // }
-
-  // const estadosArmazenados = await carregarEstados()
-  // return estadosArmazenados || []
+  const estadosArmazenados = await carregarEstados()
+  return estadosArmazenados || []
 }
 
 // Busca cidades (da API ou do AsyncStorage)
