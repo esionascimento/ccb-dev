@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, View } from 'react-native'
 import { Portal, Modal, Text, Card } from 'react-native-paper'
 import { MaterialIcons } from '@expo/vector-icons'
+import { Toast } from 'toastify-react-native'
+import { Picker } from '@react-native-picker/picker'
 import { PaperSelect } from 'react-native-paper-select'
 
 import {
@@ -9,7 +11,6 @@ import {
   fetchEstados,
 } from '@/src/services/ibge/ibge.service'
 import { Coordenada } from '@/src/models/Coordenada'
-import { Toast } from 'toastify-react-native'
 
 type Props = {
   open: boolean
@@ -101,6 +102,8 @@ export const ModalFiltroCasaOracao = ({
     error: '',
   })
 
+  const [selectedLanguage, setSelectedLanguage] = useState()
+
   return (
     <Portal>
       <Modal
@@ -116,7 +119,37 @@ export const ModalFiltroCasaOracao = ({
             </Pressable>
           </View>
 
-          <PaperSelect
+          <Picker
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedLanguage(itemValue)
+            }
+          >
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
+
+          {/* <PaperSelect
             label="Select Gender"
             value={gender.value}
             onSelection={(value: any) => {
@@ -142,7 +175,7 @@ export const ModalFiltroCasaOracao = ({
                 placeholder: 'black',
               },
             }}
-          />
+          /> */}
 
           {/* <PaperSelect
             label="Selecione o Estado"
