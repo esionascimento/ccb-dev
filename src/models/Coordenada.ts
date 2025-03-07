@@ -14,6 +14,11 @@ export interface Coordenada {
       dia: string
       horario: string
     }[]
+    ensaio?: {
+      semana: number
+      dia: number
+      horario: string
+    }
   }
   ministerio?: {
     cooperadorOficioMinisterial: string
