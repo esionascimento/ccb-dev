@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, View } from 'react-native'
-import { Portal, Modal, Text, Card } from 'react-native-paper'
+import { Portal, Modal, Text, Card, useTheme } from 'react-native-paper'
 import { MaterialIcons } from '@expo/vector-icons'
-import { Toast } from 'toastify-react-native'
-import { Picker } from '@react-native-picker/picker'
-import { PaperSelect } from 'react-native-paper-select'
 
 import {
   fetchCidadesPorEstado,
   fetchEstados,
 } from '@/src/services/ibge/ibge.service'
 import { Coordenada } from '@/src/models/Coordenada'
+import CustomPicker from '@/src/components/inputs/CustomPicker'
 
 type Props = {
   open: boolean
@@ -25,26 +23,34 @@ export const ModalFiltroCasaOracao = ({
   coordenadas,
   setCoordenadas,
 }: Props) => {
-  const [estados, setEstados] = useState<any[]>([])
-  const [cidades, setCidades] = useState<any[]>([])
+  const paperTheme = useTheme()
+  const [estadosOptions, setEstadosOptions] = useState<
+    {
+      label: string
+      value: string
+    }[]
+  >([])
+  const [cidadesOptions, setCidadesOptions] = useState<any[]>([])
   const [estadoSelecionado, setEstadoSelecionado] = useState<any>('')
-  const [cidadeSelecionada, setCidadeSelecionada] = useState<string>('')
+  const [cidadeSelecionada, setCidadeSelecionada] = useState<
+    string | number | null
+  >('')
 
   useEffect(() => {
     if (open) {
       fetchEstados()
         .then((data) => {
-          const aux =
+          const auxEstados =
             data?.map((vl) => ({
-              _id: vl.id,
+              label: vl.sigla,
               value: vl.sigla,
             })) || []
-          // Toast.success('Estados carregados.')
-          Toast.success(aux?.[0]?.value + '-' + aux?.[1]?.value)
-          setEstados(aux)
+          const estadosOrdenadas = auxEstados.sort((a, b) =>
+            a.label.localeCompare(b.label),
+          )
+          setEstadosOptions(estadosOrdenadas)
         })
         .catch((error) => {
-          Toast.error('Error carregar estados.')
           console.error('Erro buscar estados:', error)
         })
     }
@@ -54,15 +60,16 @@ export const ModalFiltroCasaOracao = ({
     if (estadoSelecionado) {
       fetchCidadesPorEstado(estadoSelecionado)
         .then((data) => {
-          const aux = data.map((vl) => ({
-            _id: vl.id,
+          const auxCidades = data.map((vl) => ({
+            label: vl.nome,
             value: vl.nome,
           }))
-          setCidades(aux)
-          Toast.success('Cidades carregados.')
+          const cidadesOrdenadas = auxCidades.sort((a, b) =>
+            a.label.localeCompare(b.label),
+          )
+          setCidadesOptions(cidadesOrdenadas)
         })
         .catch((error) => {
-          Toast.error('Error buscar cidades.')
           console.error('Erro ao buscar cidades:', error)
         })
     }
@@ -76,34 +83,6 @@ export const ModalFiltroCasaOracao = ({
     setModalVisible(false)
   }
 
-  const [gender, setGender] = useState({
-    value: '',
-    list: [
-      { _id: '1', value: 'MALE' },
-      { _id: '2', value: 'FEMALE' },
-      { _id: '3', value: 'OTHERS' },
-    ],
-    selectedList: [],
-    error: '',
-  })
-  const [colors, setColors] = useState({
-    value: '',
-    list: [
-      { _id: '1', value: 'BLUE' },
-      { _id: '2', value: 'RED' },
-      { _id: '3', value: 'GREEN' },
-      { _id: '4', value: 'YELLOW' },
-      { _id: '5', value: 'BROWN' },
-      { _id: '6', value: 'BLACK' },
-      { _id: '7', value: 'WHITE' },
-      { _id: '8', value: 'CYAN' },
-    ],
-    selectedList: [],
-    error: '',
-  })
-
-  const [selectedLanguage, setSelectedLanguage] = useState()
-
   return (
     <Portal>
       <Modal
@@ -115,91 +94,29 @@ export const ModalFiltroCasaOracao = ({
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Filtro por cidade</Text>
             <Pressable onPress={() => setModalVisible(false)}>
-              <MaterialIcons name="close" color="#fff" size={22} />
+              <MaterialIcons
+                name="close"
+                color={paperTheme?.dark ? '#FFF' : '#000'}
+                size={22}
+              />
             </Pressable>
           </View>
 
-          <Picker
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedLanguage(itemValue)
-            }
-          >
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker>
+          <CustomPicker
+            selectedValue={estadoSelecionado}
+            onValueChange={(itemValue) => setEstadoSelecionado(itemValue)}
+            items={estadosOptions || []}
+            placeholder={!estadoSelecionado ? 'Selecione um estado' : undefined}
+          />
 
-          {/* <PaperSelect
-            label="Select Gender"
-            value={gender.value}
-            onSelection={(value: any) => {
-              setGender({
-                ...gender,
-                value: value.text,
-                selectedList: value.selectedList,
-                error: '',
-              })
-            }}
-            arrayList={[...gender.list]}
-            selectedArrayList={gender.selectedList}
-            errorText={gender.error}
-            multiEnable={false}
-            dialogTitleStyle={{ color: 'red' }}
-            // checkboxColor="yellow"
-            // checkboxLabelStyle={{ color: 'red', fontWeight: '700' }}
-            // textInputBackgroundColor="yellow"
-            // textInputColor="red"
-            // outlineColor="black"
-            theme={{
-              colors: {
-                placeholder: 'black',
-              },
-            }}
-          /> */}
+          <View style={{ marginTop: 2 }} />
 
-          {/* <PaperSelect
-            label="Selecione o Estado"
-            value={estadoSelecionado}
-            onSelection={(value: any) => {
-              setEstadoSelecionado(value.text)
-            }}
-            arrayList={[...estados]}
-            selectedArrayList={[]}
-            multiEnable={false}
-            searchStyle={{ color: 'red' }}
-          /> */}
-
-          {/* <PaperSelect
-            label="Selecione a Cidade"
-            value={cidadeSelecionada}
-            onSelection={(value: any) => {
-              setCidadeSelecionada(value.text)
-            }}
-            arrayList={[...cidades]}
-            selectedArrayList={[]}
-            multiEnable={false}
-            searchStyle={{ color: 'red' }}
-          /> */}
+          <CustomPicker
+            selectedValue={cidadeSelecionada}
+            onValueChange={(itemValue) => setCidadeSelecionada(itemValue)}
+            items={cidadesOptions || []}
+            placeholder="Selecione uma cidade"
+          />
 
           <Pressable
             style={styles.closeButton}
@@ -220,7 +137,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   modalContent: {
-    height: '40%',
+    height: '30%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
