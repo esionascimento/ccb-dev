@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
 
-import CoordenadasForm from '@/src/components/CoordenadasForm'
 import CoordenadasList from '@/src/components/CoordenadasList'
 import { Coordenada } from '@/src/models/Coordenada'
 import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/HeaderMenuCasaOracao'
-import { ModalFiltroCasaOracao } from '@/src/sections/casaOracao/components/ModalFiltro'
+import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
 import { mockCoordenadas } from '../../mock/mockCoordenadas'
 
 export default function TabCasaOracao() {
@@ -37,11 +36,12 @@ export default function TabCasaOracao() {
         <CoordenadasList coordenadas={coordenadas} />
       </View>
 
-      <ModalFiltroCasaOracao
+      <ModalFiltroCasaOracaoSection
         open={modalVisible}
         setModalVisible={setModalVisible}
         coordenadas={coordenadas}
         setCoordenadas={setCoordenadas}
+        handleResetCoordenadas={handleResetCoordenadas}
       />
     </>
   )
