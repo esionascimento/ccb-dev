@@ -1,43 +1,18 @@
 import React from 'react'
-import {
-  View,
-  // Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  Linking,
-} from 'react-native'
+import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import Feather from '@expo/vector-icons/Feather'
-import * as Clipboard from 'expo-clipboard'
-import { Toast } from 'toastify-react-native'
 import { router } from 'expo-router'
 import { Card, Text } from 'react-native-paper'
 
+import { copiarCoordenada } from '../utils/copiarCoordenada'
 import { Coordenada } from '../models/Coordenada'
+import { abrirMapa } from '../utils/abrirMapa'
 
 interface Props {
   coordenadas: Coordenada[]
 }
 
 const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
-  const abrirMapa = (latitude: number, longitude: number) => {
-    const googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`
-    const appleMapsURL = `maps://?q=${latitude},${longitude}`
-
-    Linking.openURL(googleMapsURL).catch(() =>
-      Linking.openURL(appleMapsURL).catch(() =>
-        Alert.alert('Erro', 'Nenhum app de mapas encontrado!'),
-      ),
-    )
-  }
-
-  const copiarCoordenada = async (latitude: number, longitude: number) => {
-    const texto = `${latitude},${longitude}`
-    await Clipboard.setStringAsync(texto)
-    Toast.success('Coordenada copiada!')
-  }
-
   return (
     <FlatList
       data={coordenadas}
