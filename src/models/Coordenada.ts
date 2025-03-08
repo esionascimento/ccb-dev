@@ -1,6 +1,7 @@
 export interface Coordenada {
   id: string
   nome: string
+  segundoNome?: string
   latitude: number
   longitude: number
   atualizacao: string
@@ -21,9 +22,9 @@ export interface Coordenada {
     }
   }
   ministerio?: {
-    cooperadorOficioMinisterial: string
-    diacono: string
-    cooperadorJovensMenores: string
+    cooperadorOficioMinisterial?: string
+    diacono?: string
+    cooperadorJovensMenores?: string
   }
   infoAdicionais?: {
     adm?: string
@@ -38,4 +39,6 @@ interface Endereco {
   cep: number
   cidade: string
   numero: number
+  bairro?: string
+  complemento?: string
 }
