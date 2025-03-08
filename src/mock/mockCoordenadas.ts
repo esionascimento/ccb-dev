@@ -9,9 +9,9 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 76829560,
-      cidade: 'Porto Velho',
       logradouro: 'Rua Antônio Violão',
       numero: 3675,
+      cidade: 'Porto Velho',
     },
     diasCulto: {
       cultos: [
@@ -30,9 +30,9 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 76813266,
-      cidade: 'Porto Velho',
       logradouro: 'Rua Higienópolis',
       numero: 8725,
+      cidade: 'Porto Velho',
     },
     diasCulto: {
       cultos: [
@@ -44,7 +44,8 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '942312',
-    nome: 'CCB Castanheira(Gurgel)',
+    nome: 'CCB Castanheira',
+    segundoNome: 'Gurgel',
     latitude: -8.796694350758013,
     longitude: -63.86694646348956,
     atualizacao: '07/03/2025',
@@ -64,16 +65,38 @@ export const mockCoordenadas: Coordenada[] = [
     },
   },
   {
+    id: '532315',
+    nome: 'CCB Marcos Freire',
+    segundoNome: '',
+    latitude: -8.77915273138411,
+    longitude: -63.80577782001637,
+    atualizacao: '07/03/2025',
+    endereco: {
+      cep: 76829560,
+      logradouro: 'Rua Canoas',
+      numero: 11274,
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 'domingo', horario: '19:00' },
+        { dia: 'quinta', horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+    },
+  },
+  {
     id: '2',
-    nome: 'CCB Cascalheira(Flamboyant)',
+    nome: 'CCB Cascalheira',
+    segundoNome: 'Flamboyant',
     latitude: -8.778104,
     longitude: -63.837291,
     atualizacao: '26/02/2025',
     endereco: {
       cep: 76813068,
-      cidade: 'Porto Velho',
       logradouro: 'Rua Fascinação',
       numero: 614,
+      cidade: 'Porto Velho',
     },
     diasCulto: {
       cultos: [
@@ -84,26 +107,6 @@ export const mockCoordenadas: Coordenada[] = [
     },
   },
   {
-    id: '3',
-    nome: 'CCB Paraiso das Acácias',
-    latitude: -8.77895,
-    longitude: -63.596662,
-    atualizacao: '26/02/2025',
-    endereco: {
-      cep: 1321,
-      cidade: '',
-      logradouro: '',
-      numero: 12321,
-    },
-    diasCulto: {
-      cultos: [
-        { dia: 'quarta', horario: '19:30' },
-        { dia: 'sabado', horario: '19:30' },
-      ],
-      reuniaoJovemMenores: [{ dia: 'sabado', horario: '17:00' }],
-    },
-  },
-  {
     id: '4',
     nome: 'CCB Estrada da Aliança',
     latitude: -8.642954,
@@ -111,9 +114,9 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 76834899,
-      cidade: 'Porto Velho',
       logradouro: 'Linha 28 de Novembro - Km 40',
       numero: 0,
+      cidade: 'Porto Velho',
     },
     diasCulto: {
       cultos: [{ dia: 'sabado', horario: '17:00' }],
@@ -128,9 +131,9 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 76834899,
-      cidade: 'Porto Velho',
       logradouro: 'Estrada Bacia Leiteira - Km 10',
       numero: 0,
+      cidade: 'Porto Velho',
     },
     diasCulto: {
       cultos: [{ dia: 'sexta', horario: '20:00' }],
@@ -143,10 +146,11 @@ export const mockCoordenadas: Coordenada[] = [
     longitude: -63.777817,
     atualizacao: '26/02/2025',
     endereco: {
-      cep: 1321,
-      cidade: '',
+      cep: 0,
       logradouro: '',
       numero: 12321,
+      cidade: 'Porto Velho',
+      complemento: 'Jardim das Castanheiras 7 ou Linha 07',
     },
   },
   {
@@ -157,9 +161,9 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 1321,
-      cidade: '',
       logradouro: '',
       numero: 12321,
+      cidade: 'Candeias do Jamari',
     },
     diasCulto: {
       cultos: [
@@ -177,9 +181,9 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 1321,
-      cidade: '',
       logradouro: '',
       numero: 12321,
+      cidade: 'Candeias do Jamari',
     },
     diasCulto: {
       cultos: [
@@ -206,6 +210,26 @@ export const mockCoordenadas: Coordenada[] = [
         { dia: 'quinta', horario: '19:30' },
       ],
       reuniaoJovemMenores: [{ dia: 'domingo', horario: '16:30' }],
+    },
+  },
+  {
+    id: '435234',
+    nome: 'CCB Paraiso das Acácias',
+    latitude: -8.77895,
+    longitude: -63.596662,
+    atualizacao: '26/02/2025',
+    endereco: {
+      cep: 1321,
+      logradouro: '',
+      numero: 12321,
+      cidade: 'Candeias do Jamari',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 'quarta', horario: '19:30' },
+        { dia: 'sabado', horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 'sabado', horario: '17:00' }],
     },
   },
 ]
