@@ -4,10 +4,10 @@ import { View, StyleSheet } from 'react-native'
 import { Card, Text } from 'react-native-paper'
 
 import { InfoText } from '@/src/sections/casaOracao/components/InfoText'
-import { enums } from '@/src/enum'
-import { mockCoordenadas } from '../../mock/mockCoordenadas'
 import { CoordenadaLocalizacao } from './components/Localizacao'
 import { CoordenadaDiasCulto } from './components/DiasCulto'
+import { mockCoordenadas } from '../../mock/mockCoordenadas'
+import { CoordenadaHeader } from './components/Header'
 
 export function CoordenadaDetalhesSection() {
   const { id } = useLocalSearchParams()
@@ -31,11 +31,7 @@ export function CoordenadaDetalhesSection() {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Card style={{ elevation: 4, borderRadius: 8, padding: 10 }}>
-          <Text style={styles.titulo}>{coordenada.nome}</Text>
-        </Card>
-      </View>
+      <CoordenadaHeader coordenada={coordenada} />
 
       <CoordenadaLocalizacao coordenada={coordenada} />
 
@@ -58,8 +54,5 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   titulo: { fontSize: 22, fontWeight: 'bold', marginBottom: 8 },
-  subtitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 4, marginTop: 8 },
-  texto: { fontSize: 16 },
   erro: { fontSize: 18, color: 'red' },
-  space: { marginTop: 8, marginBottom: 8 },
 })
