@@ -3,26 +3,18 @@ import { Pressable, StyleSheet, View } from 'react-native'
 import { Portal, Modal, Text, Card, useTheme } from 'react-native-paper'
 import { MaterialIcons } from '@expo/vector-icons'
 
-import {
-  fetchCidadesPorEstado,
-  fetchEstados,
-} from '@/src/services/ibge/ibge.service'
+import { fetchCidadesPorEstado, fetchEstados } from '@/src/services/ibge/ibge.service'
 import { Coordenada } from '@/src/models/Coordenada'
 import CustomPicker from '@/src/components/inputs/CustomPicker'
+import { mockCoordenadas } from '@/src/mock/mockCoordenadas'
 
 type Props = {
   open: boolean
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
-  datasetCoordenadasFixo: Coordenada[]
-  setCoordenadas: React.Dispatch<React.SetStateAction<Coordenada[]>>
+  setCoordenadasSearch: React.Dispatch<React.SetStateAction<Coordenada[]>>
 }
 
-export const ModalFiltroCasaOracaoSection = ({
-  open,
-  setModalVisible,
-  setCoordenadas,
-  datasetCoordenadasFixo,
-}: Props) => {
+export const ModalFiltroCasaOracaoSection = ({ open, setModalVisible, setCoordenadasSearch }: Props) => {
   const paperTheme = useTheme()
   const [estadosOptions, setEstadosOptions] = useState<
     {
@@ -32,9 +24,7 @@ export const ModalFiltroCasaOracaoSection = ({
   >([])
   const [cidadesOptions, setCidadesOptions] = useState<any[]>([])
   const [estadoSelecionado, setEstadoSelecionado] = useState<any>('')
-  const [cidadeSelecionada, setCidadeSelecionada] = useState<
-    string | number | null
-  >('')
+  const [cidadeSelecionada, setCidadeSelecionada] = useState<string | number | null>('')
 
   useEffect(() => {
     if (open) {
@@ -45,9 +35,7 @@ export const ModalFiltroCasaOracaoSection = ({
               label: vl.sigla,
               value: vl.sigla,
             })) || []
-          const estadosOrdenadas = auxEstados.sort((a, b) =>
-            a.label.localeCompare(b.label),
-          )
+          const estadosOrdenadas = auxEstados.sort((a, b) => a.label.localeCompare(b.label))
           setEstadosOptions(estadosOrdenadas)
         })
         .catch((error) => {
@@ -64,9 +52,7 @@ export const ModalFiltroCasaOracaoSection = ({
             label: vl.nome,
             value: vl.nome,
           }))
-          const cidadesOrdenadas = auxCidades.sort((a, b) =>
-            a.label.localeCompare(b.label),
-          )
+          const cidadesOrdenadas = auxCidades.sort((a, b) => a.label.localeCompare(b.label))
           setCidadesOptions(cidadesOrdenadas)
         })
         .catch((error) => {
@@ -76,29 +62,19 @@ export const ModalFiltroCasaOracaoSection = ({
   }, [estadoSelecionado])
 
   const handleSearchCity = async () => {
-    const citySearch = datasetCoordenadasFixo?.filter(
-      (vl) => vl.endereco?.cidade === cidadeSelecionada,
-    )
-    setCoordenadas(citySearch)
+    const citySearch = mockCoordenadas?.filter((vl) => vl.endereco?.cidade === cidadeSelecionada)
+    setCoordenadasSearch(citySearch)
     setModalVisible(false)
   }
 
   return (
     <Portal>
-      <Modal
-        visible={open}
-        onDismiss={() => setModalVisible(false)}
-        contentContainerStyle={styles.modalContainer}
-      >
+      <Modal visible={open} onDismiss={() => setModalVisible(false)} contentContainerStyle={styles.modalContainer}>
         <Card style={styles.modalContent}>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Filtro por cidade</Text>
             <Pressable onPress={() => setModalVisible(false)}>
-              <MaterialIcons
-                name="close"
-                color={paperTheme?.dark ? '#FFF' : '#000'}
-                size={22}
-              />
+              <MaterialIcons name="close" color={paperTheme?.dark ? '#FFF' : '#000'} size={22} />
             </Pressable>
           </View>
 
@@ -120,10 +96,7 @@ export const ModalFiltroCasaOracaoSection = ({
             />
           )}
 
-          <Pressable
-            style={styles.closeButton}
-            onPress={() => handleSearchCity()}
-          >
+          <Pressable style={styles.closeButton} onPress={() => handleSearchCity()}>
             <Text style={styles.closeButtonText}>Buscar</Text>
           </Pressable>
         </Card>
