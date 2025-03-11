@@ -6,7 +6,7 @@ import CoordenadasList from '@/src/components/CoordenadasList'
 import { Coordenada } from '@/src/models/Coordenada'
 import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/HeaderMenuCasaOracao'
 import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
-import CoordenadasForm from '@/src/components/CoordenadasForm'
+import { CoordenadasSearch } from '@/src/components/CoordenadasSearch'
 import { mockCoordenadas } from '../../mock/mockCoordenadas'
 
 export default function TabCasaOracao() {
@@ -34,7 +34,7 @@ export default function TabCasaOracao() {
           handleResetCoordenadas={handleResetCoordenadas}
         />
 
-        <CoordenadasForm
+        <CoordenadasSearch
           setCoordenadas={setCoordenadas}
           handleResetCoordenadas={handleResetCoordenadas}
           coordenadasSearch={coordenadasSearch}
