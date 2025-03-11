@@ -9,22 +9,19 @@ import {
 } from '@/src/services/ibge/ibge.service'
 import { Coordenada } from '@/src/models/Coordenada'
 import CustomPicker from '@/src/components/inputs/CustomPicker'
-import { mockCoordenadas } from '@/src/mock/mockCoordenadas'
 
 type Props = {
   open: boolean
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
-  coordenadas: Coordenada[]
+  datasetCoordenadasFixo: Coordenada[]
   setCoordenadas: React.Dispatch<React.SetStateAction<Coordenada[]>>
-  handleResetCoordenadas: () => void
 }
 
 export const ModalFiltroCasaOracaoSection = ({
   open,
   setModalVisible,
-  coordenadas,
   setCoordenadas,
-  handleResetCoordenadas,
+  datasetCoordenadasFixo,
 }: Props) => {
   const paperTheme = useTheme()
   const [estadosOptions, setEstadosOptions] = useState<
@@ -78,8 +75,8 @@ export const ModalFiltroCasaOracaoSection = ({
     }
   }, [estadoSelecionado])
 
-  const handleSearchCity = () => {
-    const citySearch = mockCoordenadas?.filter(
+  const handleSearchCity = async () => {
+    const citySearch = datasetCoordenadasFixo?.filter(
       (vl) => vl.endereco?.cidade === cidadeSelecionada,
     )
     setCoordenadas(citySearch)
