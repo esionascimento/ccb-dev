@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
 
@@ -6,20 +6,22 @@ import CoordenadasList from '@/src/components/CoordenadasList'
 import { Coordenada } from '@/src/models/Coordenada'
 import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/HeaderMenuCasaOracao'
 import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
+import CoordenadasForm from '@/src/components/CoordenadasForm'
 import { mockCoordenadas } from '../../mock/mockCoordenadas'
 
 export default function TabCasaOracao() {
-  const [coordenadas, setCoordenadas] = useState<Coordenada[]>(mockCoordenadas)
+  const [coordenadasSearch, setCoordenadasSearch] = useState<Coordenada[]>(mockCoordenadas)
+  const [coordenadas, setCoordenadas] = useState<Coordenada[]>([])
   const [isMenu, setMenuVisible] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
-
-  const adicionarCoordenada = (coordenada: Coordenada) => {
-    setCoordenadas([...coordenadas, coordenada])
-  }
 
   const handleResetCoordenadas = () => {
     setCoordenadas(mockCoordenadas)
   }
+
+  useEffect(() => {
+    setCoordenadas(coordenadasSearch)
+  }, [coordenadasSearch])
 
   return (
     <>
@@ -32,16 +34,18 @@ export default function TabCasaOracao() {
           handleResetCoordenadas={handleResetCoordenadas}
         />
 
-        {/* <CoordenadasForm onAdicionar={adicionarCoordenada} /> */}
+        <CoordenadasForm
+          setCoordenadas={setCoordenadas}
+          handleResetCoordenadas={handleResetCoordenadas}
+          coordenadasSearch={coordenadasSearch}
+        />
         <CoordenadasList coordenadas={coordenadas} />
       </View>
 
       <ModalFiltroCasaOracaoSection
         open={modalVisible}
         setModalVisible={setModalVisible}
-        coordenadas={coordenadas}
-        setCoordenadas={setCoordenadas}
-        handleResetCoordenadas={handleResetCoordenadas}
+        setCoordenadasSearch={setCoordenadasSearch}
       />
     </>
   )
