@@ -1,4 +1,20 @@
 export const convertOthers = {
+  formatarDia(dia: number | undefined): string {
+    if (!dia) return ''
+
+    const dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
+    const diaTexto = dias[dia - 1] ?? 'Dia inválido'
+
+    return diaTexto
+  },
+  formatarSemana(semana: number | undefined): string {
+    if (!semana) return ''
+
+    const semanas = ['Primeira', 'Segunda', 'Terceira', 'Quarta', 'Quinta']
+    const semanaTexto = semanas[semana - 1] ?? 'Semana inválida'
+
+    return semanaTexto
+  },
   formatarSemanaEDia({
     semana,
     dia,
@@ -14,28 +30,10 @@ export const convertOthers = {
         dia: string
         horario: string
       } {
-    if (!semana) return undefined
-    if (!dia) return undefined
-    if (!horario) return undefined
-
-    const semanas = ['Primeira', 'Segunda', 'Terceira', 'Quarta', 'Quinta']
-    const dias = [
-      'Domingo',
-      'Segunda-feira',
-      'Terça-feira',
-      'Quarta-feira',
-      'Quinta-feira',
-      'Sexta-feira',
-      'Sábado',
-    ]
-
-    const semanaTexto = semanas[semana - 1] ?? 'Semana inválida'
-    const diaTexto = dias[dia - 1] ?? 'Dia inválido'
-
     return {
-      semana: semanaTexto,
-      dia: diaTexto,
-      horario,
+      semana: convertOthers.formatarSemana(semana),
+      dia: convertOthers.formatarDia(dia),
+      horario: horario || '',
     }
   },
 }
