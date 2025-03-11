@@ -4,7 +4,6 @@ import { Card, Text } from 'react-native-paper'
 
 import { convertOthers } from '@/src/utils/convert/others'
 import { Coordenada } from '@/src/models/Coordenada'
-import { enums } from '@/src/enum'
 
 type Props = {
   coordenada: Coordenada
@@ -24,7 +23,7 @@ export function CoordenadaDiasCulto({ coordenada }: Props) {
       <Text style={styles.subtitle}>Cultos:</Text>
       {coordenada?.diasCulto?.cultos?.map((culto, index) => (
         <Text key={index} style={styles.texto}>
-          {enums.DiasSemana[culto.dia]} - {culto.horario}
+          {convertOthers.formatarDia(culto.dia)} - {culto?.horario || ''}
         </Text>
       ))}
 
@@ -33,7 +32,7 @@ export function CoordenadaDiasCulto({ coordenada }: Props) {
       <Text style={styles.subtitle}>Reunião de Jovens e Menores:</Text>
       {coordenada?.diasCulto?.reuniaoJovemMenores?.map((culto, index) => (
         <Text key={index} style={styles.texto}>
-          {enums.DiasSemana[culto.dia]} - {culto.horario}
+          {convertOthers.formatarDia(culto.dia)} - {culto?.horario || ''}
         </Text>
       ))}
 
