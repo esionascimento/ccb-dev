@@ -2,6 +2,29 @@ import { Coordenada } from '../models/Coordenada'
 
 export const mockCoordenadas: Coordenada[] = [
   {
+    id: '92846192',
+    nome: 'Agenor Martins de Carvalho',
+    segundoNome: 'Central',
+    latitude: -8.7610799,
+    longitude: -63.8725178,
+    atualizacao: '11/03/2025',
+    endereco: {
+      cep: 76820366,
+      logradouro: 'Rua Vespaziano Ramos',
+      numero: 3259,
+      bairro: 'Agenor M. de Carvalho',
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 1, horario: '19:00' },
+        { dia: 3, horario: '19:30' },
+        { dia: 5, horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 1, horario: '15:00' }],
+    },
+  },
+  {
     id: '1',
     nome: 'CCB Tancredo Neves',
     latitude: -8.760491,
@@ -15,10 +38,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'domingo', horario: '19:00' },
-        { dia: 'quinta', horario: '19:30' },
+        { dia: 1, horario: '19:00' },
+        { dia: 5, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '10:00' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '10:00' }],
       ensaio: { semana: 2, dia: 2, horario: '19:30' },
     },
   },
@@ -36,10 +59,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'domingo', horario: '19:00' },
-        { dia: 'quarta', horario: '19:30' },
+        { dia: 1, horario: '19:00' },
+        { dia: 4, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
     },
   },
   {
@@ -57,10 +80,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'domingo', horario: '19:00' },
-        { dia: 'terca', horario: '19:30' },
+        { dia: 1, horario: '19:00' },
+        { dia: 3, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
       ensaio: { semana: 2, dia: 7, horario: '19:30' },
     },
   },
@@ -79,10 +102,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'domingo', horario: '19:00' },
-        { dia: 'quinta', horario: '19:30' },
+        { dia: 1, horario: '19:00' },
+        { dia: 5, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
     },
   },
   {
@@ -100,10 +123,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'quinta', horario: '19:30' },
-        { dia: 'sabado', horario: '19:30' },
+        { dia: 5, horario: '19:30' },
+        { dia: 7, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
     },
   },
   {
@@ -119,8 +142,8 @@ export const mockCoordenadas: Coordenada[] = [
       cidade: 'Porto Velho',
     },
     diasCulto: {
-      cultos: [{ dia: 'sabado', horario: '17:00' }],
-      reuniaoJovemMenores: [{ dia: 'sabado', horario: '17:00' }],
+      cultos: [{ dia: 7, horario: '17:00' }],
+      reuniaoJovemMenores: [{ dia: 7, horario: '17:00' }],
     },
   },
   {
@@ -136,7 +159,7 @@ export const mockCoordenadas: Coordenada[] = [
       cidade: 'Porto Velho',
     },
     diasCulto: {
-      cultos: [{ dia: 'sexta', horario: '20:00' }],
+      cultos: [{ dia: 6, horario: '20:00' }],
     },
   },
   {
@@ -167,10 +190,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'domingo', horario: '19:00' },
-        { dia: 'quinta', horario: '19:30' },
+        { dia: 1, horario: '19:00' },
+        { dia: 5, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '09:30' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
     },
   },
   {
@@ -187,8 +210,8 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'terca', horario: '19:30' },
-        { dia: 'sexta', horario: '19:30' },
+        { dia: 3, horario: '19:30' },
+        { dia: 6, horario: '19:30' },
       ],
     },
   },
@@ -200,16 +223,16 @@ export const mockCoordenadas: Coordenada[] = [
     atualizacao: '26/02/2025',
     endereco: {
       cep: 76860000,
-      cidade: 'Candeias do Jamari',
       logradouro: 'Rodovia BR-362 - Km 72',
+      cidade: 'Candeias do Jamari',
       numero: 0,
     },
     diasCulto: {
       cultos: [
-        { dia: 'domingo', horario: '19:00' },
-        { dia: 'quinta', horario: '19:30' },
+        { dia: 1, horario: '19:00' },
+        { dia: 5, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'domingo', horario: '16:30' }],
+      reuniaoJovemMenores: [{ dia: 1, horario: '16:30' }],
     },
   },
   {
@@ -226,10 +249,10 @@ export const mockCoordenadas: Coordenada[] = [
     },
     diasCulto: {
       cultos: [
-        { dia: 'quarta', horario: '19:30' },
-        { dia: 'sabado', horario: '19:30' },
+        { dia: 4, horario: '19:30' },
+        { dia: 7, horario: '19:30' },
       ],
-      reuniaoJovemMenores: [{ dia: 'sabado', horario: '17:00' }],
+      reuniaoJovemMenores: [{ dia: 7, horario: '17:00' }],
     },
   },
 ]
