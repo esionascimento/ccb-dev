@@ -39,7 +39,7 @@ export function CoordenadaDiasCulto({ coordenada }: Props) {
       <View style={styles.space} />
 
       <Text style={styles.subtitle}>Ensaio:</Text>
-      {ensaioFormat ? (
+      {ensaioFormat?.dia ? (
         <>
           <Text style={styles.texto}>{ensaioFormat?.semana} semana do mês</Text>
           <Text style={styles.texto}>
