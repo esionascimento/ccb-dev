@@ -8,11 +8,11 @@ export interface Coordenada {
   endereco?: Endereco
   diasCulto?: {
     cultos: {
-      dia: string
+      dia: number
       horario: string
     }[]
     reuniaoJovemMenores?: {
-      dia: string
+      dia: number
       horario: string
     }[]
     ensaio?: {
