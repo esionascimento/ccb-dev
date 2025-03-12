@@ -172,7 +172,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '1',
-    nome: 'CCB Tancredo Neves',
+    nome: 'Tancredo Neves',
     latitude: -8.760491,
     longitude: -63.835211,
     atualizacao: '26/02/2025',
@@ -193,7 +193,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '24110948',
-    nome: 'CCB São Francisco',
+    nome: 'São Francisco',
     latitude: -8.775083,
     longitude: -63.829238,
     atualizacao: '26/02/2025',
@@ -213,7 +213,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '94231932',
-    nome: 'CCB Castanheira',
+    nome: 'Castanheira',
     segundoNome: 'Gurgel',
     latitude: -8.796694350758013,
     longitude: -63.86694646348956,
@@ -235,7 +235,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '53231590',
-    nome: 'CCB Marcos Freire',
+    nome: 'Marcos Freire',
     segundoNome: '',
     latitude: -8.77915273138411,
     longitude: -63.80577782001637,
@@ -256,7 +256,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '2',
-    nome: 'CCB Cascalheira',
+    nome: 'Cascalheira',
     segundoNome: 'Flamboyant',
     latitude: -8.778104,
     longitude: -63.837291,
@@ -277,7 +277,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '4',
-    nome: 'CCB Estrada da Aliança',
+    nome: 'Estrada da Aliança',
     latitude: -8.642954,
     longitude: -63.611601,
     atualizacao: '26/02/2025',
@@ -294,7 +294,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '5',
-    nome: 'CCB Ramal Bom Jesus',
+    nome: 'Ramal Bom Jesus',
     latitude: -8.831721,
     longitude: -63.781003,
     atualizacao: '26/02/2025',
@@ -310,7 +310,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '6',
-    nome: 'CCB KM 13',
+    nome: 'KM 13',
     latitude: -8.805448,
     longitude: -63.777817,
     atualizacao: '26/02/2025',
@@ -324,7 +324,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '7',
-    nome: 'CCB Candeias Central',
+    nome: 'Candeias Central',
     latitude: -8.795603,
     longitude: -63.700311,
     atualizacao: '26/02/2025',
@@ -344,7 +344,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '8',
-    nome: 'CCB Candeias Santa Letícia',
+    nome: 'Candeias Santa Letícia',
     latitude: -8.787536,
     longitude: -63.690464,
     atualizacao: '26/02/2025',
@@ -363,7 +363,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '45354',
-    nome: 'CCB Chapéu de palha',
+    nome: 'Chapéu de palha',
     latitude: -9.028419,
     longitude: -63.417665,
     atualizacao: '26/02/2025',
@@ -383,7 +383,7 @@ export const mockCoordenadas: Coordenada[] = [
   },
   {
     id: '435234',
-    nome: 'CCB Paraiso das Acácias',
+    nome: 'Paraiso das Acácias',
     latitude: -8.77895,
     longitude: -63.596662,
     atualizacao: '26/02/2025',
