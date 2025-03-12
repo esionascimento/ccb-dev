@@ -171,6 +171,114 @@ export const mockCoordenadas: Coordenada[] = [
     },
   },
   {
+    id: '83924390',
+    nome: 'Igarapé',
+    latitude: -8.7465438,
+    longitude: -63.85629,
+    atualizacao: '12/03/2025',
+    endereco: {
+      cep: 76824246,
+      logradouro: 'Rua Maria de Lourdes',
+      numero: 6297,
+      bairro: 'Igarapé',
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 4, horario: '19:30' },
+        { dia: 7, horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 1, horario: '16:00' }],
+    },
+  },
+  {
+    id: '84989912',
+    nome: 'Jardim Santana',
+    latitude: -8.752623,
+    longitude: -63.81752,
+    atualizacao: '12/03/2025',
+    endereco: {
+      cep: 76828690,
+      logradouro: 'Rua Raimundo Cantuária',
+      numero: 10398,
+      bairro: 'Jardim Santana',
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 3, horario: '19:30' },
+        { dia: 7, horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
+    },
+  },
+  {
+    id: '12129384',
+    nome: 'Lagoa',
+    latitude: -8.771854,
+    longitude: -63.863634,
+    atualizacao: '12/03/2025',
+    endereco: {
+      cep: 76828690,
+      logradouro: 'Rua Jaraqui',
+      numero: 9851,
+      bairro: 'Lagoa',
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 1, horario: '19:00' },
+        { dia: 4, horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 1, horario: '09:30' }],
+    },
+  },
+  {
+    id: '84346378',
+    nome: 'Lagoinha',
+    latitude: -8.766204,
+    longitude: -63.848977,
+    atualizacao: '12/03/2025',
+    endereco: {
+      cep: 76828690,
+      logradouro: 'Rua Saint Clair Granto',
+      numero: 3452,
+      bairro: 'Lagoinha',
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        { dia: 3, horario: '19:30' },
+        { dia: 7, horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [{ dia: 1, horario: '10:00' }],
+    },
+  },
+  {
+    id: '91889232',
+    nome: 'Linha 17',
+    latitude: -8.629841,
+    longitude: -63.999616,
+    atualizacao: '12/03/2025',
+    endereco: {
+      cep: 0,
+      logradouro: '',
+      numero: 0,
+      bairro: '',
+      cidade: 'Porto Velho',
+    },
+    diasCulto: {
+      cultos: [
+        // { dia: 3, horario: '19:30' },
+        // { dia: 7, horario: '19:30' },
+      ],
+      reuniaoJovemMenores: [
+        // { dia: 1, horario: '10:00' }
+      ],
+    },
+  },
+
+  {
     id: '1',
     nome: 'Tancredo Neves',
     latitude: -8.760491,
