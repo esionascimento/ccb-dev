@@ -16,7 +16,10 @@ export function CoordenadaLocalizacao({ coordenada }: Props) {
         <Text style={styles.titulo}>Localização</Text>
         <View>
           <InfoText label="CEP" value={coordenada.endereco?.cep} />
-          <InfoText label="Logradouro" value={`${coordenada.endereco?.logradouro}, ${coordenada.endereco?.numero}`} />
+          <InfoText
+            label="Logradouro"
+            value={`${coordenada.endereco?.logradouro || 'N/A'}, ${coordenada.endereco?.numero}`}
+          />
           <InfoText label="Bairro" value={coordenada.endereco?.bairro} />
           <InfoText label="Cidade" value={coordenada.endereco?.cidade} />
           <InfoText label="Latitude" value={coordenada.latitude} />
