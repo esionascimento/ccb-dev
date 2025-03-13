@@ -4,9 +4,9 @@ import Feather from '@expo/vector-icons/Feather'
 import { router } from 'expo-router'
 import { Card, Text } from 'react-native-paper'
 
-import { copiarCoordenada } from '../utils/copiarCoordenada'
-import { Coordenada } from '../models/Coordenada'
-import { abrirMapa } from '../utils/abrirMapa'
+import { copiarCoordenada } from '../../../utils/copiarCoordenada'
+import { Coordenada } from '../../../models/Coordenada'
+import { abrirMapa } from '../../../utils/abrirMapa'
 
 interface Props {
   coordenadas: Coordenada[]
@@ -26,9 +26,7 @@ const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
               <Text style={styles.coordenadas}>
                 Lat: {item.latitude}, Lon: {item.longitude}
               </Text>
-              <Text style={styles.atualizacao}>
-                Última atualização: {item.atualizacao}
-              </Text>
+              <Text style={styles.atualizacao}>Última atualização: {item.atualizacao}</Text>
             </View>
 
             <View style={styles.icons}>
@@ -42,10 +40,7 @@ const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
                 <Feather name="clipboard" size={24} color="#444" />
                 <Text>Copiar coordenada</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => abrirMapa(item.latitude, item.longitude)}
-                style={styles.icon}
-              >
+              <TouchableOpacity onPress={() => abrirMapa(item.latitude, item.longitude)} style={styles.icon}>
                 <Feather name="map-pin" size={24} color="#007AFF" />
               </TouchableOpacity>
             </View>
