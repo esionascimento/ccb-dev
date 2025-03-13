@@ -1,8 +1,4 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native'
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
@@ -10,17 +6,26 @@ import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
 import ToastManager, { Toast } from 'toastify-react-native'
-import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper'
+import { MD3DarkTheme, MD3LightTheme, MD3Theme, PaperProvider } from 'react-native-paper'
 
 import { useColorScheme } from '@/src/hooks/useColorScheme'
 import { fetchEstados } from '../services/ibge/ibge.service'
+import lightThemeJson from '../themes/lightTheme.json'
+import darkThemeJson from '../themes/darkTheme.json'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
-  const theme = colorScheme === 'dark' ? MD3DarkTheme : MD3LightTheme
+  const theme = {
+    ...(colorScheme === 'dark' ? MD3DarkTheme : MD3LightTheme),
+    colors: {
+      ...(colorScheme === 'dark' ? MD3DarkTheme.colors : MD3LightTheme.colors),
+      ...(colorScheme === 'dark' ? darkThemeJson.colors : lightThemeJson.colors),
+    },
+  }
+
   const [loaded] = useFonts({
     SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
   })
@@ -49,9 +54,7 @@ export default function RootLayout() {
   return (
     <>
       <PaperProvider theme={theme}>
-        <ThemeProvider
-          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-        >
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
