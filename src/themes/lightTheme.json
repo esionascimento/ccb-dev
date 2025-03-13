@@ -1,0 +1,11 @@
+{
+  "colors": {
+    "primary": "#174c59",
+    "secondary": "#41a2ba",
+    "background": "#f5f5f5",
+    "surface": "#ffffff",
+    "text": "#000000",
+    "onSurface": "#333333",
+    "buttonBackground": "#dcdcdc"
+  }
+}
