@@ -4,6 +4,7 @@ import { HelloWave } from '@/src/components/HelloWave'
 import ParallaxScrollView from '@/src/components/ParallaxScrollView'
 import { ThemedText } from '@/src/components/ThemedText'
 import { ThemedView } from '@/src/components/ThemedView'
+import { HomeSection } from '@/src/sections/home/HomeSection'
 
 export default function HomeScreen() {
   return (
@@ -15,10 +16,7 @@ export default function HomeScreen() {
         <ThemedText type="title">CCB!</ThemedText>
         <HelloWave />
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Aplicativo não oficial</ThemedText>
-        <ThemedText>Aplicativo com algumas informações, como coordenadas, ensaio, etc.</ThemedText>
-      </ThemedView>
+      <HomeSection />
     </ParallaxScrollView>
   )
 }
