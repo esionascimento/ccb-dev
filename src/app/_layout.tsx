@@ -5,8 +5,8 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
-import ToastManager, { Toast } from 'toastify-react-native'
-import { MD3DarkTheme, MD3LightTheme, MD3Theme, PaperProvider } from 'react-native-paper'
+import ToastManager from 'toastify-react-native'
+import { MD3DarkTheme, MD3LightTheme, PaperProvider, useTheme } from 'react-native-paper'
 
 import { useColorScheme } from '@/src/hooks/useColorScheme'
 import { fetchEstados } from '../services/ibge/ibge.service'
@@ -15,6 +15,18 @@ import darkThemeJson from '../themes/darkTheme.json'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
+
+const theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    ...lightThemeJson.colors,
+  },
+}
+
+export type AppTheme = typeof theme
+
+export const useAppTheme = () => useTheme<AppTheme>()
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
