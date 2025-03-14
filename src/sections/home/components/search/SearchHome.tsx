@@ -1,17 +1,18 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import Fontisto from '@expo/vector-icons/Fontisto'
-import { Text, useTheme } from 'react-native-paper'
+import { Text } from 'react-native-paper'
+import { router } from 'expo-router'
 
 import { useIsDark } from '@/src/hooks/useIsDark'
-import { router } from 'expo-router'
+import { useAppTheme } from '@/src/app/_layout'
 
 type Props = {
   setOpcao: any
 }
 
 export function SearchHome({ setOpcao }: Props) {
-  const theme = useTheme()
+  const theme = useAppTheme()
   const isDark = useIsDark()
 
   return (
