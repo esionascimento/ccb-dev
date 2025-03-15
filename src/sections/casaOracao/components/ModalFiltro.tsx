@@ -24,7 +24,7 @@ export const ModalFiltroCasaOracaoSection = ({ open, setModalVisible, setCoorden
   >([])
   const [cidadesOptions, setCidadesOptions] = useState<any[]>([])
   const [estadoSelecionado, setEstadoSelecionado] = useState<any>('')
-  const [cidadeSelecionada, setCidadeSelecionada] = useState<string | number | null>('')
+  const [cidadeSelecionada, setCidadeSelecionada] = useState<string>('')
 
   useEffect(() => {
     if (open) {
@@ -62,7 +62,9 @@ export const ModalFiltroCasaOracaoSection = ({ open, setModalVisible, setCoorden
   }, [estadoSelecionado])
 
   const handleSearchCity = async () => {
-    const citySearch = mockCoordenadas?.filter((vl) => vl.endereco?.cidade === cidadeSelecionada)
+    const citySearch = mockCoordenadas?.filter(
+      (vl) => vl.endereco?.cidade?.toLowerCase() === cidadeSelecionada?.toLowerCase(),
+    )
     setCoordenadasSearch(citySearch)
     setModalVisible(false)
   }
@@ -90,7 +92,7 @@ export const ModalFiltroCasaOracaoSection = ({ open, setModalVisible, setCoorden
           {estadoSelecionado && (
             <CustomPicker
               selectedValue={cidadeSelecionada}
-              onValueChange={(itemValue) => setCidadeSelecionada(itemValue)}
+              onValueChange={(itemValue) => setCidadeSelecionada(itemValue as string)}
               items={cidadesOptions || []}
               placeholder="Selecione uma cidade"
             />
