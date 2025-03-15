@@ -1,54 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-paper'
 
-import CoordenadasList from '@/src/sections/casaOracao/components/CoordenadasList'
-import { Coordenada } from '@/src/models/Coordenada'
-import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/HeaderMenuCasaOracao'
-import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
-import { CoordenadasSearch } from '@/src/sections/casaOracao/components/CoordenadasSearch'
-import { mockCoordenadas } from '../../mock/mockCoordenadas'
+import { TabCasaOracaoSection } from '@/src/sections/casaOracao/CasaOracaoSection'
 
 export default function TabCasaOracao() {
-  const [coordenadasSearch, setCoordenadasSearch] = useState<Coordenada[]>(mockCoordenadas)
-  const [coordenadas, setCoordenadas] = useState<Coordenada[]>([])
-  const [isMenu, setMenuVisible] = useState(false)
-  const [modalVisible, setModalVisible] = useState(false)
-
-  const handleResetCoordenadas = () => {
-    setCoordenadas(mockCoordenadas)
-  }
-
-  useEffect(() => {
-    setCoordenadas(coordenadasSearch)
-  }, [coordenadasSearch])
-
   return (
     <>
       <View style={styles.container}>
         <Text style={styles.title}>Lista de Coordenadas</Text>
-        <HeaderMenuCasaOracao
-          setModalVisible={setModalVisible}
-          isMenu={isMenu}
-          setMenu={setMenuVisible}
-          handleResetCoordenadas={handleResetCoordenadas}
-        />
 
-        <CoordenadasSearch setCoordenadas={setCoordenadas} coordenadasSearch={coordenadasSearch} />
-        <CoordenadasList coordenadas={coordenadas} />
+        <TabCasaOracaoSection />
       </View>
-
-      <ModalFiltroCasaOracaoSection
-        open={modalVisible}
-        setModalVisible={setModalVisible}
-        setCoordenadasSearch={setCoordenadasSearch}
-      />
     </>
   )
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1 },
   container: { flex: 1, padding: 8 },
   title: {
     fontSize: 20,
