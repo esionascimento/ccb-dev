@@ -10,8 +10,10 @@ interface Props {
 
 export const CoordenadasSearch: React.FC<Props> = ({ setCoordenadas, coordenadasSearch }) => {
   const changeSeach = (text: string) => {
-    const resultadosFiltrados = coordenadasSearch.filter((coordenada) =>
-      coordenada?.nome.toLowerCase().includes(text.toLowerCase()),
+    const resultadosFiltrados = coordenadasSearch.filter(
+      (coordenada) =>
+        coordenada?.nome.toLowerCase().includes(text.toLowerCase()) ||
+        coordenada?.segundoNome?.toLowerCase().includes(text.toLowerCase()),
     )
 
     setCoordenadas(resultadosFiltrados)
