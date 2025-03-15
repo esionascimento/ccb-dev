@@ -1,41 +1,51 @@
-import { Linking, Alert, Platform } from 'react-native'
+import { Linking, Alert } from 'react-native'
 
-export const abrirMapa = async (options: { latitude?: number; longitude?: number } | { endereco: string }) => {
-  let googleMapsURL = ''
-  let appleMapsURL = ''
+interface AbrirMapaParams {
+  latitude?: number
+  longitude?: number
+  endereco?: string
+}
 
-  if ('latitude' in options && 'longitude' in options) {
-    const { latitude, longitude } = options
-    googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`
-    appleMapsURL = `maps://?q=${latitude},${longitude}`
-  } else if ('endereco' in options) {
-    const { endereco } = options
-    googleMapsURL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`
-    appleMapsURL = `maps://?q=${encodeURIComponent(endereco)}`
-  } else {
-    Alert.alert('Erro', 'Nenhuma informação de localização fornecida!')
+export const abrirMapa = async ({ latitude, longitude, endereco }: AbrirMapaParams) => {
+  console.log('latitude: ', latitude)
+  console.log('longitude: ', longitude)
+  console.log('endereco: ', endereco)
+  console.log('!latitude: ', !!latitude)
+  const hasCoordinates = !!latitude && !!longitude
+  console.log('hasCoordinates: ', hasCoordinates)
+
+  const mapsMeUrl = hasCoordinates
+    ? `mapsme://map?ll=${latitude},${longitude}&z=15`
+    : `mapsme://search?query=${encodeURIComponent(endereco || '')}`
+
+  const googleMapsUrl = hasCoordinates
+    ? `geo:${latitude},${longitude}?q=${latitude},${longitude}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco || '')}`
+
+  const wazeUrl = hasCoordinates
+    ? `https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`
+    : `https://waze.com/ul?q=${encodeURIComponent(endereco || '')}`
+
+  // Tenta abrir Maps.Me
+  if (await Linking.canOpenURL(mapsMeUrl)) {
+    console.log('mapsMeUrl: ', mapsMeUrl)
+    await Linking.openURL(mapsMeUrl)
     return
   }
 
-  const canOpenAppleMaps = await Linking.canOpenURL(appleMapsURL)
-  const canOpenGoogleMaps = await Linking.canOpenURL(googleMapsURL)
-
-  if (canOpenAppleMaps && canOpenGoogleMaps) {
-    Alert.alert(
-      'Escolha o mapa',
-      'Qual app de mapas você deseja usar?',
-      [
-        { text: 'Apple Maps', onPress: () => Linking.openURL(appleMapsURL) },
-        { text: 'Google Maps', onPress: () => Linking.openURL(googleMapsURL) },
-        { text: 'Cancelar', style: 'cancel' },
-      ],
-      { cancelable: true },
-    )
-  } else if (canOpenAppleMaps) {
-    Linking.openURL(appleMapsURL)
-  } else if (canOpenGoogleMaps) {
-    Linking.openURL(googleMapsURL)
-  } else {
-    Alert.alert('Erro', 'Nenhum app de mapas encontrado!')
+  // Tenta abrir Google Maps
+  if (await Linking.canOpenURL(googleMapsUrl)) {
+    console.log('googleMapsUrl: ', googleMapsUrl)
+    await Linking.openURL(googleMapsUrl)
+    return
   }
+
+  // Tenta abrir Waze
+  if (await Linking.canOpenURL(wazeUrl)) {
+    console.log('wazeUrl: ', wazeUrl)
+    await Linking.openURL(wazeUrl)
+    return
+  }
+
+  Alert.alert('Erro', 'Não foi possível abrir o mapa.')
 }
