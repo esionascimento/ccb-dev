@@ -40,7 +40,16 @@ const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
                 <Feather name="clipboard" size={24} color="#444" />
                 <Text>Copiar coordenada</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => abrirMapa(item.latitude, item.longitude)} style={styles.icon}>
+              <TouchableOpacity
+                onPress={() =>
+                  abrirMapa({
+                    latitude: item.latitude,
+                    longitude: item.longitude,
+                    endereco: `${item?.endereco?.logradouro},${item?.endereco?.numero},${item?.endereco?.cidade}`,
+                  })
+                }
+                style={styles.icon}
+              >
                 <Feather name="map-pin" size={24} color="#007AFF" />
               </TouchableOpacity>
             </View>

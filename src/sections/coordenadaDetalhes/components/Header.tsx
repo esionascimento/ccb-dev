@@ -16,16 +16,12 @@ export function CoordenadaHeader({ coordenada }: Props) {
     <Card style={{ elevation: 4, borderRadius: 8, padding: 10 }}>
       <View>
         <Text style={styles.titulo}>{coordenada.nome}</Text>
-        {coordenada?.segundoNome && (
-          <Text style={styles.subtitle}>{coordenada.segundoNome}</Text>
-        )}
+        {coordenada?.segundoNome && <Text style={styles.subtitle}>{coordenada.segundoNome}</Text>}
       </View>
 
       <View style={styles.icons}>
         <TouchableOpacity
-          onPress={() =>
-            copiarCoordenada(coordenada.latitude, coordenada.longitude)
-          }
+          onPress={() => copiarCoordenada(coordenada.latitude, coordenada.longitude)}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -35,7 +31,13 @@ export function CoordenadaHeader({ coordenada }: Props) {
           <Text>Copiar coordenada</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => abrirMapa(coordenada.latitude, coordenada.longitude)}
+          onPress={() =>
+            abrirMapa({
+              latitude: coordenada.latitude,
+              longitude: coordenada.longitude,
+              endereco: `${coordenada?.endereco?.logradouro},${coordenada?.endereco?.numero},${coordenada?.endereco?.cidade}`,
+            })
+          }
           style={styles.icon}
         >
           <Feather name="map-pin" size={24} color="#007AFF" />
