@@ -1,5 +1,6 @@
 export interface Coordenada {
   id: string
+  idExterno?: string
   nome: string
   segundoNome?: string
   latitude: number
@@ -41,4 +42,6 @@ interface Endereco {
   numero: number
   bairro?: string
   complemento?: string
+  uf?: string
+  pais?: string
 }
