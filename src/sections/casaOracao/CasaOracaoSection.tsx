@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-import CoordenadasList from '@/src/sections/casaOracao/components/CoordenadasList'
+import { CoordenadasList } from '@/src/sections/components/CoordenadasList'
 import { Coordenada } from '@/src/models/Coordenada'
 import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/HeaderMenuCasaOracao'
 import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
 import { CoordenadasSearch } from '@/src/sections/casaOracao/components/CoordenadasSearch'
 import { ThemedText } from '@/src/components/ThemedText'
-import { mockCoordenadas } from '../../mock/mockCoordenadas'
+import { dataCoordenadas } from '../../api/dataCoordenadas'
 
 export function TabCasaOracaoSection() {
   const [coordenadasSearch, setCoordenadasSearch] = useState<Coordenada[]>([])
@@ -15,7 +15,7 @@ export function TabCasaOracaoSection() {
   const [modalVisible, setModalVisible] = useState(false)
 
   const handleResetCoordenadas = () => {
-    setCoordenadas(mockCoordenadas)
+    setCoordenadas(dataCoordenadas)
   }
 
   useEffect(() => {
