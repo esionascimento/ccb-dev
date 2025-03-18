@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { View, Button, Vibration } from 'react-native'
 import { Audio } from 'expo-av'
-import Slider from '@react-native-community/slider'
 import { ThemedText } from '@/src/components/ThemedText'
 import { Toast } from 'toastify-react-native'
+import { Slider } from '@/src/components/Slider'
 
 export const MetronomoSection = () => {
   const [bpm, setBpm] = useState<number>(60)
@@ -79,10 +79,10 @@ export const MetronomoSection = () => {
           minimumValue={30}
           maximumValue={240}
           step={1}
-          value={bpm}
-          onValueChange={(value: number) => setBpm(value)}
-          minimumTrackTintColor="#FFFFFF"
-          maximumTrackTintColor="#000000"
+          // value={bpm}
+          // onValueChange={(value: number) => setBpm(value)}
+          // minimumTrackTintColor="#FFFFFF"
+          // maximumTrackTintColor="#000000"
         />
       </View>
 
