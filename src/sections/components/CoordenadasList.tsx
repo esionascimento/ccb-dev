@@ -4,19 +4,19 @@ import Feather from '@expo/vector-icons/Feather'
 import { router } from 'expo-router'
 import { Card, Text } from 'react-native-paper'
 
-import { copiarCoordenada } from '../../../utils/copiarCoordenada'
-import { Coordenada } from '../../../models/Coordenada'
-import { abrirMapa } from '../../../utils/abrirMapa'
+import { copiarCoordenada } from '../../utils/copiarCoordenada'
+import { Coordenada } from '../../models/Coordenada'
+import { abrirMapa } from '../../utils/abrirMapa'
 
 interface Props {
   coordenadas: Coordenada[]
 }
 
-const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
+export const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
   return (
     <FlatList
       data={coordenadas}
-      keyExtractor={(item, index) => index.toString()}
+      keyExtractor={(_item, index) => index.toString()}
       contentContainerStyle={styles.listContainer}
       renderItem={({ item }) => (
         <TouchableOpacity onPress={() => router.push(`/coordenada/${item.id}`)}>
@@ -26,6 +26,7 @@ const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
               <Text style={styles.coordenadas}>
                 Lat: {item.latitude}, Lon: {item.longitude}
               </Text>
+              <Text style={styles.atualizacao}>Cidade: {item.endereco?.cidade}</Text>
               <Text style={styles.atualizacao}>Última atualização: {item.atualizacao}</Text>
             </View>
 
@@ -95,5 +96,3 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
 })
-
-export default CoordenadasList
