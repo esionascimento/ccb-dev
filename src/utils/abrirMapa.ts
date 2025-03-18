@@ -7,12 +7,7 @@ interface AbrirMapaParams {
 }
 
 export const abrirMapa = async ({ latitude, longitude, endereco }: AbrirMapaParams) => {
-  console.log('latitude: ', latitude)
-  console.log('longitude: ', longitude)
-  console.log('endereco: ', endereco)
-  console.log('!latitude: ', !!latitude)
   const hasCoordinates = !!latitude && !!longitude
-  console.log('hasCoordinates: ', hasCoordinates)
 
   const mapsMeUrl = hasCoordinates
     ? `mapsme://map?ll=${latitude},${longitude}&z=15`
@@ -28,21 +23,18 @@ export const abrirMapa = async ({ latitude, longitude, endereco }: AbrirMapaPara
 
   // Tenta abrir Maps.Me
   if (await Linking.canOpenURL(mapsMeUrl)) {
-    console.log('mapsMeUrl: ', mapsMeUrl)
     await Linking.openURL(mapsMeUrl)
     return
   }
 
   // Tenta abrir Google Maps
   if (await Linking.canOpenURL(googleMapsUrl)) {
-    console.log('googleMapsUrl: ', googleMapsUrl)
     await Linking.openURL(googleMapsUrl)
     return
   }
 
   // Tenta abrir Waze
   if (await Linking.canOpenURL(wazeUrl)) {
-    console.log('wazeUrl: ', wazeUrl)
     await Linking.openURL(wazeUrl)
     return
   }
