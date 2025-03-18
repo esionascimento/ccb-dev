@@ -33,4 +33,24 @@ export const serviceCoordenada = {
       }, 100)
     })
   },
+  searchCityUf: async ({ cidade, uf }: { cidade: string; uf: string }): Promise<Coordenada[]> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let results = dataCoordenadas
+
+        if (cidade) {
+          results = results.filter((item) => {
+            const cidadeItem = item.endereco?.cidade?.toLowerCase() ?? ''
+            const ufItem = item.endereco?.uf?.toLowerCase() ?? ''
+            const cidadeFiltro = cidade?.toLowerCase() ?? ''
+            const ufFiltro = uf?.toLowerCase() ?? ''
+
+            return cidadeItem.includes(cidadeFiltro) && ufItem.includes(ufFiltro)
+          })
+        }
+
+        resolve(results)
+      }, 100)
+    })
+  },
 }
