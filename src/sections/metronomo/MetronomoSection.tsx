@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { View, Button, Vibration } from 'react-native'
 import { Audio } from 'expo-av'
-// import Slider from '@react-native-community/slider'
+import Slider from '@react-native-community/slider'
 import { ThemedText } from '@/src/components/ThemedText'
 import { Toast } from 'toastify-react-native'
 
@@ -73,19 +73,24 @@ export const MetronomoSection = () => {
 
   return (
     <View style={{ padding: 20 }}>
-      <ThemedText>BPM: {bpm}</ThemedText>
-      {/* <Slider
-        minimumValue={30}
-        maximumValue={240}
-        step={1}
-        value={bpm}
-        onValueChange={(value: number) => setBpm(value)}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
-      /> */}
-      <Button title={isPlaying ? 'Parar' : 'Iniciar'} onPress={() => setIsPlaying((prev) => !prev)} />
-      <View style={{ marginTop: 3 }} />
-      <Button title={useVibration ? 'Som' : 'Vibração'} onPress={() => setUseVibration((prev) => !prev)} />
+      <View>
+        <ThemedText>BPM: {bpm}</ThemedText>
+        <Slider
+          minimumValue={30}
+          maximumValue={240}
+          step={1}
+          value={bpm}
+          onValueChange={(value: number) => setBpm(value)}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#000000"
+        />
+      </View>
+
+      <View>
+        <Button title={isPlaying ? 'Parar' : 'Iniciar'} onPress={() => setIsPlaying((prev) => !prev)} />
+        <View style={{ marginTop: 3 }} />
+        <Button title={useVibration ? 'Som' : 'Vibração'} onPress={() => setUseVibration((prev) => !prev)} />
+      </View>
     </View>
   )
 }
