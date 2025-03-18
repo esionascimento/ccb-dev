@@ -3,6 +3,7 @@ import AntDesign from '@expo/vector-icons/AntDesign'
 // import Fontisto from '@expso/vector-icons/Fontisto'
 import { Text } from 'react-native-paper'
 import { router } from 'expo-router'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 import { useIsDark } from '@/src/hooks/useIsDark'
 import { useAppTheme } from '@/src/app/_layout'
@@ -36,6 +37,19 @@ export function SearchHome() {
         >
           <AntDesign name="setting" size={30} color={isDark ? 'white' : 'black'} />
           <Text style={styles.buttonText}>Configuração</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.gridContainer}>
+        <TouchableOpacity
+          style={{
+            ...styles.button,
+            backgroundColor: theme.colors.buttonBackground,
+            borderColor: theme.colors.secondary,
+          }}
+          onPress={() => router.push(`/metronomo`)}
+        >
+          <MaterialCommunityIcons name="metronome" size={30} color={isDark ? 'white' : 'black'} />
+          <Text style={styles.buttonText}>Metrónomo</Text>
         </TouchableOpacity>
 
         {/* <TouchableOpacity
