@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { View, Button, Vibration } from 'react-native'
 import { Audio } from 'expo-av'
-import Slider from '@react-native-community/slider'
+// import Slider from '@react-native-community/slider'
 import { ThemedText } from '@/src/components/ThemedText'
+import { Toast } from 'toastify-react-native'
 
 export const MetronomoSection = () => {
   const [bpm, setBpm] = useState<number>(60)
@@ -11,13 +12,17 @@ export const MetronomoSection = () => {
   const soundRef = useRef<Audio.Sound | null>(null)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
-  useEffect(() => {
-    const loadSound = async () => {
-      const { sound } = await Audio.Sound.createAsync(require('../../../assets/sons/metronome.mp3'))
-      soundRef.current = sound
-    }
+  const loadSound = async () => {
+    const { sound } = await Audio.Sound.createAsync(require('../../../assets/sons/metronome.mp3'))
+    soundRef.current = sound
+  }
 
-    loadSound()
+  useEffect(() => {
+    try {
+      loadSound()
+    } catch (error) {
+      Toast.error('Error 23:')
+    }
 
     return () => {
       if (soundRef.current) {
@@ -39,7 +44,11 @@ export const MetronomoSection = () => {
 
   useEffect(() => {
     if (isPlaying) {
-      playSound()
+      try {
+        playSound()
+      } catch (error) {
+        console.log('Error 834:')
+      }
 
       intervalRef.current = setInterval(() => {
         playSound()
@@ -65,7 +74,7 @@ export const MetronomoSection = () => {
   return (
     <View style={{ padding: 20 }}>
       <ThemedText>BPM: {bpm}</ThemedText>
-      <Slider
+      {/* <Slider
         minimumValue={30}
         maximumValue={240}
         step={1}
@@ -73,7 +82,7 @@ export const MetronomoSection = () => {
         onValueChange={(value: number) => setBpm(value)}
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
-      />
+      /> */}
       <Button title={isPlaying ? 'Parar' : 'Iniciar'} onPress={() => setIsPlaying((prev) => !prev)} />
       <View style={{ marginTop: 3 }} />
       <Button title={useVibration ? 'Som' : 'Vibração'} onPress={() => setUseVibration((prev) => !prev)} />
