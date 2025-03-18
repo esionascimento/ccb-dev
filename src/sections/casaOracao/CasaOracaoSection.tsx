@@ -6,21 +6,39 @@ import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/Heade
 import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
 import { CoordenadasSearch } from '@/src/sections/casaOracao/components/CoordenadasSearch'
 import { ThemedText } from '@/src/components/ThemedText'
-import { dataCoordenadas } from '../../api/dataCoordenadas'
+import { useConfiguracao } from '@/src/hooks/useConfiguracao'
+import { serviceCoordenada } from '@/src/services/coordenada/coordenada.service'
 
 export function TabCasaOracaoSection() {
+  const config = useConfiguracao()
+  const [coordenadasFixa, setCoordenadasFixa] = useState<Coordenada[]>([])
   const [coordenadasSearch, setCoordenadasSearch] = useState<Coordenada[]>([])
   const [coordenadas, setCoordenadas] = useState<Coordenada[]>([])
   const [isMenu, setMenuVisible] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
 
   const handleResetCoordenadas = () => {
-    setCoordenadas(dataCoordenadas)
+    loadCasas()
   }
 
   useEffect(() => {
     setCoordenadas(coordenadasSearch)
   }, [coordenadasSearch])
+
+  const loadCasas = async () => {
+    if (config?.endereco?.cidade) {
+      const response = await serviceCoordenada.searchCityUf({
+        cidade: config?.endereco?.cidade,
+        uf: config?.endereco?.uf,
+      })
+      setCoordenadasFixa(response)
+      setCoordenadas(response)
+    }
+  }
+
+  useEffect(() => {
+    loadCasas()
+  }, [config?.endereco?.cidade])
 
   return (
     <>
@@ -31,7 +49,7 @@ export function TabCasaOracaoSection() {
         handleResetCoordenadas={handleResetCoordenadas}
       />
 
-      <CoordenadasSearch setCoordenadas={setCoordenadas} coordenadasSearch={coordenadasSearch} />
+      <CoordenadasSearch setCoordenadas={setCoordenadas} coordenadasSearch={coordenadasFixa} />
       <ThemedText>{coordenadas?.length} casas de orações</ThemedText>
       <CoordenadasList coordenadas={coordenadas} />
 
