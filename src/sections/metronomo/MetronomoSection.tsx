@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { View, Text, Button, Vibration } from 'react-native'
+import { View, Button, Vibration } from 'react-native'
 import { Audio } from 'expo-av'
 import Slider from '@react-native-community/slider'
 import { ThemedText } from '@/src/components/ThemedText'
@@ -13,7 +13,7 @@ export const MetronomoSection = () => {
 
   useEffect(() => {
     const loadSound = async () => {
-      const { sound } = await Audio.Sound.createAsync(require('../../assets/sons/metronome.mp3'))
+      const { sound } = await Audio.Sound.createAsync(require('../../../assets/sons/metronome.mp3'))
       soundRef.current = sound
     }
 
