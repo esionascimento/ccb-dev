@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
 
 import { Coordenada } from '@/src/models/Coordenada'
 import { CoordenadasList } from '../components/CoordenadasList'
@@ -10,15 +9,9 @@ export const BuscaRapidaSection = () => {
 
   return (
     <>
-      <View style={styles.container}>
-        <BuscaRapidaSearch setCoordenadas={setCoordenadas} />
+      <BuscaRapidaSearch setCoordenadas={setCoordenadas} />
 
-        <CoordenadasList coordenadas={coordenadas} />
-      </View>
+      <CoordenadasList coordenadas={coordenadas} />
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: { marginBottom: 8 },
-})
