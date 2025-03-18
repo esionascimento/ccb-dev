@@ -1,17 +1,13 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign'
-import Fontisto from '@expo/vector-icons/Fontisto'
+// import Fontisto from '@expso/vector-icons/Fontisto'
 import { Text } from 'react-native-paper'
 import { router } from 'expo-router'
 
 import { useIsDark } from '@/src/hooks/useIsDark'
 import { useAppTheme } from '@/src/app/_layout'
 
-type Props = {
-  setOpcao: any
-}
-
-export function SearchHome({ setOpcao }: Props) {
+export function SearchHome() {
   const theme = useAppTheme()
   const isDark = useIsDark()
 
@@ -31,6 +27,18 @@ export function SearchHome({ setOpcao }: Props) {
         </TouchableOpacity>
 
         <TouchableOpacity
+          style={{
+            ...styles.button,
+            backgroundColor: theme.colors.buttonBackground,
+            borderColor: theme.colors.secondary,
+          }}
+          onPress={() => router.push(`/configuracao`)}
+        >
+          <AntDesign name="setting" size={30} color={isDark ? 'white' : 'black'} />
+          <Text style={styles.buttonText}>Configuração</Text>
+        </TouchableOpacity>
+
+        {/* <TouchableOpacity
           disabled
           style={{
             ...styles.button,
@@ -41,7 +49,7 @@ export function SearchHome({ setOpcao }: Props) {
         >
           <Fontisto name="world-o" size={30} color={isDark ? 'white' : 'black'} />
           <Text style={styles.buttonText}>Busca Geográfica</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   )
