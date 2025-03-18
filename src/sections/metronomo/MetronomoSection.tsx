@@ -79,7 +79,7 @@ export const MetronomoSection = () => {
           minimumValue={30}
           maximumValue={240}
           step={1}
-          // value={bpm}
+          value={bpm}
           onValueChange={(value: number) => setBpm(value)}
           // minimumTrackTintColor="#FFFFFF"
           // maximumTrackTintColor="#000000"
