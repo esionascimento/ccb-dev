@@ -6,7 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { fetchCidadesPorEstado, fetchEstados } from '@/src/services/ibge/ibge.service'
 import { Coordenada } from '@/src/models/Coordenada'
 import CustomPicker from '@/src/components/inputs/CustomPicker'
-import { mockCoordenadas } from '@/src/mock/mockCoordenadas'
+import { dataCoordenadas } from '@/src/api/dataCoordenadas'
 
 type Props = {
   open: boolean
@@ -62,7 +62,7 @@ export const ModalFiltroCasaOracaoSection = ({ open, setModalVisible, setCoorden
   }, [estadoSelecionado])
 
   const handleSearchCity = async () => {
-    const citySearch = mockCoordenadas?.filter(
+    const citySearch = dataCoordenadas?.filter(
       (vl) => vl.endereco?.cidade?.toLowerCase() === cidadeSelecionada?.toLowerCase(),
     )
     setCoordenadasSearch(citySearch)
