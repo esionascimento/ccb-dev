@@ -13,11 +13,10 @@ export function HomeSection() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Aplicativo não oficial</ThemedText>
         <ThemedText>Aplicativo com algumas informações, como coordenadas, ensaio, etc.</ThemedText>
+        {config?.endereco?.cidade && <ThemedText>Cidade Padrão: {config?.endereco?.cidade} </ThemedText>}
       </ThemedView>
 
       <SearchHome />
-
-      {config?.endereco?.cidade && <ThemedText>Cidade Padrão: {config?.endereco?.cidade} </ThemedText>}
     </View>
   )
 }
