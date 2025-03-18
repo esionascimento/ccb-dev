@@ -1,0 +1,82 @@
+import React, { useState, useEffect, useRef } from 'react'
+import { View, Text, Button, Vibration } from 'react-native'
+import { Audio } from 'expo-av'
+import Slider from '@react-native-community/slider'
+import { ThemedText } from '@/src/components/ThemedText'
+
+export const MetronomoSection = () => {
+  const [bpm, setBpm] = useState<number>(60)
+  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const [useVibration, setUseVibration] = useState<boolean>(false)
+  const soundRef = useRef<Audio.Sound | null>(null)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    const loadSound = async () => {
+      const { sound } = await Audio.Sound.createAsync(require('../../assets/sons/metronome.mp3'))
+      soundRef.current = sound
+    }
+
+    loadSound()
+
+    return () => {
+      if (soundRef.current) {
+        soundRef.current.unloadAsync()
+      }
+    }
+  }, [])
+
+  const playSound = async () => {
+    if (useVibration) {
+      Vibration.vibrate(100)
+    } else {
+      if (soundRef.current) {
+        await soundRef.current.stopAsync()
+        await soundRef.current.replayAsync()
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (isPlaying) {
+      playSound()
+
+      intervalRef.current = setInterval(() => {
+        playSound()
+      }, (60 / bpm) * 1000)
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+      if (soundRef.current) {
+        soundRef.current.stopAsync()
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+    }
+  }, [isPlaying, bpm, useVibration])
+
+  return (
+    <View style={{ padding: 20 }}>
+      <ThemedText>BPM: {bpm}</ThemedText>
+      <Slider
+        minimumValue={30}
+        maximumValue={240}
+        step={1}
+        value={bpm}
+        onValueChange={(value: number) => setBpm(value)}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+      />
+      <Button title={isPlaying ? 'Parar' : 'Iniciar'} onPress={() => setIsPlaying((prev) => !prev)} />
+      <View style={{ marginTop: 3 }} />
+      <Button title={useVibration ? 'Som' : 'Vibração'} onPress={() => setUseVibration((prev) => !prev)} />
+    </View>
+  )
+}
