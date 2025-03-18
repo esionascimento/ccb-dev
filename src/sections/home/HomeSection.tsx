@@ -1,12 +1,12 @@
-import { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 
+import { useConfiguracao } from '@/src/hooks/useConfiguracao'
 import { ThemedText } from '@/src/components/ThemedText'
 import { ThemedView } from '@/src/components/ThemedView'
 import { SearchHome } from './components/search/SearchHome'
 
 export function HomeSection() {
-  const [opcao, setOpcao] = useState<string | null>(null)
+  const config = useConfiguracao()
 
   return (
     <View>
@@ -15,7 +15,9 @@ export function HomeSection() {
         <ThemedText>Aplicativo com algumas informações, como coordenadas, ensaio, etc.</ThemedText>
       </ThemedView>
 
-      <SearchHome setOpcao={setOpcao} />
+      <SearchHome />
+
+      {config?.endereco?.cidade && <ThemedText>Cidade Padrão: {config?.endereco?.cidade} </ThemedText>}
     </View>
   )
 }
