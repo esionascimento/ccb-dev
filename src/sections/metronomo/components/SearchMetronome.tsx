@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { TextInput } from 'react-native-paper'
 
@@ -11,6 +11,8 @@ interface Props {
 }
 
 export const SearchMetronome = ({ setDataset }: Props) => {
+  const [value, setValue] = useState<string>('')
+
   const debouncedSearch = useCallback(
     createDebounce(async (hino: string) => {
       if (hino) {
@@ -22,12 +24,19 @@ export const SearchMetronome = ({ setDataset }: Props) => {
   )
 
   const changeSeach = async (hino: string) => {
+    if (!hino) return setValue('')
+    if (+hino < 1) return
+    if (+hino > 480) {
+      setValue('480')
+      return debouncedSearch('480')
+    }
+    setValue(hino)
     debouncedSearch(hino)
   }
 
   return (
     <View style={styles.container}>
-      <TextInput keyboardType="numeric" style={styles.input} onChangeText={changeSeach} />
+      <TextInput keyboardType="numeric" style={styles.input} value={value} onChangeText={changeSeach} />
     </View>
   )
 }
@@ -37,7 +46,7 @@ const styles = StyleSheet.create({
   input: {
     marginVertical: 5,
     borderRadius: 5,
-    width: 50,
+    width: 60,
     alignSelf: 'center',
   },
 })
