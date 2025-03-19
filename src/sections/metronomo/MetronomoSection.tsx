@@ -78,7 +78,8 @@ export const MetronomoSection = () => {
 
   const ritmoMedio = useMemo(() => {
     if (dataset) {
-      setIsPlaying((prev) => !prev)
+      setIsPlaying(false)
+      setUseVibration(false)
       const media = Math.ceil((dataset?.max + dataset?.min) / 2)
       setBpm(media)
       setBpm2(media)
