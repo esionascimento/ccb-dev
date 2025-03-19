@@ -1,14 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { View, Button, Vibration } from 'react-native'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
+import { View, Button, Vibration, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av'
-import { ThemedText } from '@/src/components/ThemedText'
 import { Toast } from 'toastify-react-native'
+
+import { ThemedText } from '@/src/components/ThemedText'
 import { Slider } from '@/src/components/Slider'
+import { Hino } from '@/src/models/Hinos'
+import { SearchMetronome } from './components/SearchMetronome'
 
 export const MetronomoSection = () => {
   const [bpm, setBpm] = useState<number>(60)
+  const [bpm2, setBpm2] = useState<number | undefined>(undefined)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [useVibration, setUseVibration] = useState<boolean>(false)
+  const [dataset, setDataset] = useState<Hino>()
   const soundRef = useRef<Audio.Sound | null>(null)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -71,19 +76,35 @@ export const MetronomoSection = () => {
     }
   }, [isPlaying, bpm, useVibration])
 
+  const ritmoMedio = useMemo(() => {
+    if (dataset) {
+      const media = (dataset?.max + dataset?.min) / 2
+      setBpm(media)
+      setBpm2(media)
+      return media
+    }
+  }, [dataset])
+
   return (
-    <View style={{ padding: 20 }}>
+    <View>
       <View>
+        <SearchMetronome setDataset={setDataset} />
+        <ThemedText style={styles.textTitle}>{dataset?.title}</ThemedText>
+        <ThemedText>Ritmo médio: {ritmoMedio}</ThemedText>
         <ThemedText>BPM: {bpm}</ThemedText>
+      </View>
+
+      <View style={styles.slider}>
+        <ThemedText style={styles.textSlider}>{dataset?.min}</ThemedText>
         <Slider
-          minimumValue={30}
-          maximumValue={240}
+          style={{ width: '80%' }}
+          minimumValue={dataset?.min || 0}
+          maximumValue={dataset?.max || 100}
           step={1}
-          value={bpm}
+          value={bpm2}
           onValueChange={(value: number) => setBpm(value)}
-          // minimumTrackTintColor="#FFFFFF"
-          // maximumTrackTintColor="#000000"
         />
+        <ThemedText style={styles.textSlider}>{dataset?.max}</ThemedText>
       </View>
 
       <View>
@@ -94,3 +115,24 @@ export const MetronomoSection = () => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  textTitle: { alignSelf: 'center', fontSize: 18, marginBottom: 30 },
+  input: {
+    marginVertical: 5,
+    borderRadius: 5,
+    width: 50,
+    alignSelf: 'center',
+  },
+  slider: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 30,
+    marginBottom: 30,
+    width: '100%',
+  },
+  textSlider: {
+    width: '10%',
+    textAlign: 'center',
+  },
+})
