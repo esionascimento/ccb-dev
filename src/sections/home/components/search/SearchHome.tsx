@@ -49,7 +49,7 @@ export function SearchHome() {
           onPress={() => router.push(`/metronomo`)}
         >
           <MaterialCommunityIcons name="metronome" size={30} color={isDark ? 'white' : 'black'} />
-          <Text style={styles.buttonText}>Metrónomo</Text>
+          <Text style={styles.buttonText}>Metrônomo</Text>
         </TouchableOpacity>
 
         {/* <TouchableOpacity

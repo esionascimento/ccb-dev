@@ -9,7 +9,7 @@ export default function ConfiguracaoScreen() {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Metrónomo',
+      title: 'Metrônomo',
       headerTitleStyle: { fontWeight: 'bold' },
     })
   }, [])
