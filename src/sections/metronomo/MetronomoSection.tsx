@@ -78,7 +78,8 @@ export const MetronomoSection = () => {
 
   const ritmoMedio = useMemo(() => {
     if (dataset) {
-      const media = (dataset?.max + dataset?.min) / 2
+      setIsPlaying((prev) => !prev)
+      const media = Math.ceil((dataset?.max + dataset?.min) / 2)
       setBpm(media)
       setBpm2(media)
       return media
@@ -117,7 +118,7 @@ export const MetronomoSection = () => {
 }
 
 const styles = StyleSheet.create({
-  textTitle: { alignSelf: 'center', fontSize: 18, marginBottom: 30 },
+  textTitle: { alignSelf: 'center', fontSize: 18, marginBottom: 30, fontWeight: 500 },
   input: {
     marginVertical: 5,
     borderRadius: 5,
