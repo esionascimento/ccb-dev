@@ -11,12 +11,13 @@ export function HomeSection() {
   return (
     <View>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Aplicativo não oficial</ThemedText>
-        <ThemedText>Aplicativo com algumas informações, como coordenadas, ensaio, etc.</ThemedText>
-        {config?.endereco?.cidade && <ThemedText>Cidade Padrão: {config?.endereco?.cidade} </ThemedText>}
+        <ThemedText type="subtitle">Aplicativo independente e não oficial.</ThemedText>
+        <ThemedText>- Aplicativo que disponibiliza informações como coordenadas, ensaios e outros dados.</ThemedText>
+        <ThemedText>- Não possui nenhum vínculo com a Congregação Cristã no Brasil.</ThemedText>
       </ThemedView>
 
       <SearchHome />
+      {config?.endereco?.cidade && <ThemedText>Cidade Padrão: {config?.endereco?.cidade} </ThemedText>}
     </View>
   )
 }
