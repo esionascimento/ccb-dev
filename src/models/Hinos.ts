@@ -3,6 +3,13 @@ export interface Hino {
   hino: number
   coro: boolean
   title: string
-  min: number
-  max: number
+  compasso: {
+    num: number
+    den: number
+  }
+  tempo: {
+    nota: string
+    min: number
+    max: number
+  }
 }
