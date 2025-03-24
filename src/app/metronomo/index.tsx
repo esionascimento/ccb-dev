@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native'
 
 import { MetronomoSection } from '@/src/sections/metronomo/MetronomoSection'
 
-export default function ConfiguracaoScreen() {
+export default function MetronomoScreen() {
   const navigation = useNavigation()
 
   useLayoutEffect(() => {
