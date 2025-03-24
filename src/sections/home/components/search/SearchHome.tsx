@@ -7,6 +7,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 import { useIsDark } from '@/src/hooks/useIsDark'
 import { useAppTheme } from '@/src/app/_layout'
+import { PATH } from '@/src/constants/routes'
 
 export function SearchHome() {
   const theme = useAppTheme()
@@ -16,7 +17,7 @@ export function SearchHome() {
     <View>
       <View style={styles.gridContainer}>
         <TouchableOpacity
-          onPress={() => router.push(`/busca-rapida`)}
+          onPress={() => router.push(PATH.buscaRapida)}
           style={{
             ...styles.button,
             backgroundColor: theme.colors.buttonBackground,
@@ -26,18 +27,6 @@ export function SearchHome() {
           <AntDesign name="search1" size={30} color={isDark ? 'white' : 'black'} />
           <Text style={styles.buttonText}>Procura Rápida</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{
-            ...styles.button,
-            backgroundColor: theme.colors.buttonBackground,
-            borderColor: theme.colors.secondary,
-          }}
-          onPress={() => router.push(`/configuracao`)}
-        >
-          <AntDesign name="setting" size={30} color={isDark ? 'white' : 'black'} />
-          <Text style={styles.buttonText}>Configuração</Text>
-        </TouchableOpacity>
       </View>
       <View style={styles.gridContainer}>
         <TouchableOpacity
@@ -46,7 +35,7 @@ export function SearchHome() {
             backgroundColor: theme.colors.buttonBackground,
             borderColor: theme.colors.secondary,
           }}
-          onPress={() => router.push(`/metronomo`)}
+          onPress={() => router.push(PATH.metronomo)}
         >
           <MaterialCommunityIcons name="metronome" size={30} color={isDark ? 'white' : 'black'} />
           <Text style={styles.buttonText}>Metrônomo</Text>
