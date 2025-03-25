@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react'
 import { useNavigation } from 'expo-router'
 import { StyleSheet, View } from 'react-native'
 
-import { ConfiguracaoSection } from '@/src/sections/configuracao/ConfiguracaoSection'
+import { ConfiguracaoSection } from '@/src/sections/settings/ConfiguracaoSection'
 
 export default function ConfiguracaoScreen() {
   const navigation = useNavigation()
