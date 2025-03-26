@@ -3,6 +3,8 @@ import { View, Button, Vibration, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av'
 import { Toast } from 'toastify-react-native'
 
+import { storageService } from '@/src/services/storageService'
+import { Metronome } from '@/src/services/storage.interface'
 import { ThemedText } from '@/src/components/ThemedText'
 import { Slider } from '@/src/components/Slider'
 import { Hino } from '@/src/models/Hinos'
@@ -17,6 +19,17 @@ export const MetronomoSection = () => {
   const soundRef = useRef<Audio.Sound | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const startTimeRef = useRef<number | null>(null)
+  const ritmoRef = useRef<Metronome | null>(null)
+
+  useEffect(() => {
+    ;(async () => {
+      const configuracao = await storageService.get('configuracao')
+      if (configuracao?.metronome) {
+        return (ritmoRef.current = configuracao.metronome)
+      }
+      ritmoRef.current = 'med'
+    })()
+  }, [])
 
   const loadSound = async () => {
     const { sound } = await Audio.Sound.createAsync(require('../../../assets/sons/metronome.wav'))
@@ -88,14 +101,25 @@ export const MetronomoSection = () => {
     }
   }, [isPlaying, bpm, useVibration])
 
-  const ritmoMedio = useMemo(() => {
+  const changeBpm = (media: number) => {
+    setBpm(media)
+    setBpm2(media)
+    return media
+  }
+
+  const ritmoDefault = useMemo(() => {
     if (dataset) {
       setIsPlaying(false)
       setUseVibration(false)
-      const media = Math.ceil((dataset?.tempo?.max + dataset?.tempo?.min) / 2)
-      setBpm(media)
-      setBpm2(media)
-      return media
+      switch (ritmoRef.current) {
+        case 'min':
+          return changeBpm(dataset?.tempo?.min)
+        case 'med':
+          const media = Math.ceil((dataset?.tempo?.max + dataset?.tempo?.min) / 2)
+          return changeBpm(media)
+        case 'max':
+          return changeBpm(dataset?.tempo?.max)
+      }
     }
   }, [dataset])
 
@@ -134,7 +158,7 @@ export const MetronomoSection = () => {
         </View>
         <View style={styles.row}>
           <ThemedText style={styles.textSubtitle}>Ritmo médio: </ThemedText>
-          <ThemedText>{ritmoMedio}</ThemedText>
+          <ThemedText>{ritmoDefault}</ThemedText>
         </View>
         <View style={styles.row}>
           <ThemedText style={styles.textSubtitle}>BPM: </ThemedText>
@@ -166,12 +190,6 @@ export const MetronomoSection = () => {
 
 const styles = StyleSheet.create({
   textTitle: { alignSelf: 'center', fontSize: 18, marginBottom: 30, fontWeight: 500 },
-  input: {
-    marginVertical: 5,
-    borderRadius: 5,
-    width: 50,
-    alignSelf: 'center',
-  },
   slider: {
     display: 'flex',
     flexDirection: 'row',
