@@ -62,11 +62,23 @@ export const ModalFiltroCasaOracaoSection = ({ open, setModalVisible, setCoorden
   }, [estadoSelecionado])
 
   const handleSearchCity = async () => {
-    const citySearch = dataCoordenadas?.filter(
-      (vl) => vl.endereco?.cidade?.toLowerCase() === cidadeSelecionada?.toLowerCase(),
-    )
-    setCoordenadasSearch(citySearch)
-    setModalVisible(false)
+    try {
+      if (!cidadeSelecionada) {
+        const estadoSearch = dataCoordenadas?.filter(
+          (vl) => vl.endereco?.uf?.toLowerCase() === estadoSelecionado?.toLowerCase(),
+        )
+        setCoordenadasSearch(estadoSearch)
+        return
+      }
+
+      const citySearch = dataCoordenadas?.filter(
+        (vl) => vl.endereco?.cidade?.toLowerCase() === cidadeSelecionada?.toLowerCase(),
+      )
+      setCoordenadasSearch(citySearch)
+    } catch (error) {
+    } finally {
+      setModalVisible(false)
+    }
   }
 
   return (
