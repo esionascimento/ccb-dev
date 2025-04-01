@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { CoordenadasList } from '@/src/sections/components/CoordenadasList'
 import { Coordenada } from '@/src/models/Coordenada'
 import { HeaderMenuCasaOracao } from '@/src/sections/casaOracao/components/HeaderMenuCasaOracao'
-import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/ModalFiltro'
+import { ModalFiltroCasaOracaoSection } from '@/src/sections/casaOracao/components/modal/ModalFiltro'
 import { CoordenadasSearch } from '@/src/sections/casaOracao/components/CoordenadasSearch'
 import { ThemedText } from '@/src/components/ThemedText'
 import { useConfiguracao } from '@/src/hooks/useConfiguracao'
 import { serviceCoordenada } from '@/src/services/coordenada/coordenada.service'
+import { useDialog } from '@/src/hooks/useDialog'
+import { ModalFiltroEnsaio } from './components/modal/ModalEnsaio'
 
 export function TabCasaOracaoSection() {
   const config = useConfiguracao()
@@ -16,6 +18,7 @@ export function TabCasaOracaoSection() {
   const [coordenadas, setCoordenadas] = useState<Coordenada[]>([])
   const [isMenu, setMenuVisible] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
+  const dialogEnsaio = useDialog()
 
   const handleResetCoordenadas = () => {
     loadCasas()
@@ -47,6 +50,7 @@ export function TabCasaOracaoSection() {
         isMenu={isMenu}
         setMenu={setMenuVisible}
         handleResetCoordenadas={handleResetCoordenadas}
+        handleFiltroEnsaio={() => dialogEnsaio.handleOpen()}
       />
 
       <CoordenadasSearch setCoordenadas={setCoordenadas} coordenadasSearch={coordenadasFixa} />
@@ -58,6 +62,13 @@ export function TabCasaOracaoSection() {
         setModalVisible={setModalVisible}
         setCoordenadasSearch={setCoordenadasSearch}
       />
+      {dialogEnsaio.open && (
+        <ModalFiltroEnsaio
+          open={dialogEnsaio.open}
+          onClose={dialogEnsaio.handleClose}
+          setCoordenadasSearch={setCoordenadasSearch}
+        />
+      )}
     </>
   )
 }
