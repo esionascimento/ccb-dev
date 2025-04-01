@@ -1,5 +1,5 @@
-import { DiasSemana } from './diasSemana'
+import { DiasSemanaLabel } from './diasSemana'
 
 export const enums = {
-  DiasSemana,
+  DiasSemanaLabel: DiasSemanaLabel,
 }
