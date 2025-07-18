@@ -11,7 +11,7 @@ interface Props {
 
 export const BuscaRapidaSearch = ({ setCoordenadas }: Props) => {
   const changeSeach = async (nome: string) => {
-    if (nome?.length > 2) {
+    if (nome?.length > 1) {
       const response = await serviceCoordenada.search({
         nome,
       })
