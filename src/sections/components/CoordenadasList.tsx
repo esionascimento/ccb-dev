@@ -31,16 +31,21 @@ export const CoordenadasList: React.FC<Props> = ({ coordenadas }) => {
             </View>
 
             <View style={styles.icons}>
-              <TouchableOpacity
-                onPress={() => copiarCoordenada(item.latitude, item.longitude)}
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-              >
-                <Feather name="clipboard" size={24} color="#444" />
-                <Text>Copiar coordenada</Text>
-              </TouchableOpacity>
+              {item?.latitude ? (
+                <TouchableOpacity
+                  onPress={() => copiarCoordenada(item.latitude, item.longitude)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                  disabled={!item?.latitude}
+                >
+                  <Feather name="clipboard" size={24} color="#444" />
+                  <Text>Copiar coordenada</Text>
+                </TouchableOpacity>
+              ) : (
+                <View />
+              )}
               <TouchableOpacity
                 onPress={() =>
                   abrirMapa({
