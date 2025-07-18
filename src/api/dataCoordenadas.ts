@@ -4637,13 +4637,14 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
+  // Candeias Do Jamari
   {
     id: 'c247799a-e747-4c73-8b41-f9b1e2de799c',
     idExterno: '17675',
     nome: 'Distrito Triunfo',
     segundoNome: 'BR-26-0578',
-    latitude: 0,
-    longitude: 0,
+    latitude: -9.281075,
+    longitude: -63.462699,
     atualizacao: '2025-03-14T23:25:05.604Z',
     endereco: {
       cep: 76860890,
@@ -4837,9 +4838,9 @@ export const dataCoordenadas: Coordenada[] = [
     id: 'abc58918-154f-4732-b4c2-2ca026c95e10',
     idExterno: '17868',
     nome: 'Projeto Nova Samuel',
-    segundoNome: 'BR-26-0772',
-    latitude: 0,
-    longitude: 0,
+    segundoNome: 'Linha 45',
+    latitude: -8.66408,
+    longitude: -63.415778,
     atualizacao: '2025-03-14T23:44:47.775Z',
     endereco: {
       cep: 76860000,
@@ -4908,8 +4909,8 @@ export const dataCoordenadas: Coordenada[] = [
     idExterno: '31633',
     nome: 'Linha 43 - Km 14 - Bacia Leiteira',
     segundoNome: 'BR-26-0823',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.951761,
+    longitude: -63.706122,
     atualizacao: '2025-03-14T23:50:15.978Z',
     endereco: {
       cep: 76860000,
@@ -4923,10 +4924,15 @@ export const dataCoordenadas: Coordenada[] = [
       cultos: [
         {
           dia: 1,
-          horario: '16:00',
+          horario: '19:00',
         },
       ],
-      reuniaoJovemMenores: [],
+      reuniaoJovemMenores: [
+        {
+          dia: 1,
+          horario: '16:30',
+        },
+      ],
     },
   },
   {
@@ -4986,8 +4992,8 @@ export const dataCoordenadas: Coordenada[] = [
     idExterno: '41242',
     nome: 'Assentamento Flor do Amazonas - Linha 12',
     segundoNome: 'BR-26-0969',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.938259,
+    longitude: -63.596396,
     atualizacao: '2025-03-15T00:08:53.557Z',
     endereco: {
       cep: 76860000,
@@ -5007,6 +5013,7 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
+  // Castanheiras
   {
     id: '46e0b9bf-b6db-482d-81a1-f8d2edbf57e9',
     idExterno: '17499',
@@ -11657,6 +11664,7 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
+  // Porto Velho
   {
     id: '1ed7f5d7-d85d-4ba8-8d8e-59ae85713b9b',
     idExterno: '17446',
@@ -12524,8 +12532,8 @@ export const dataCoordenadas: Coordenada[] = [
     idExterno: '17689',
     nome: 'Morrinhos',
     segundoNome: 'BR-26-0592',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.870504,
+    longitude: -64.18111,
     atualizacao: '2025-03-14T23:26:17.335Z',
     endereco: {
       cep: 76834899,
@@ -12708,8 +12716,8 @@ export const dataCoordenadas: Coordenada[] = [
     idExterno: '33007',
     nome: 'Vila Franciscana',
     segundoNome: 'BR-26-0863',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.769048,
+    longitude: -64.075369,
     atualizacao: '2025-03-14T23:55:13.752Z',
     endereco: {
       cep: 76834899,
@@ -13066,8 +13074,8 @@ export const dataCoordenadas: Coordenada[] = [
     idExterno: '41920',
     nome: 'Comunidade Cachoeira dos Macacos',
     segundoNome: 'BR-26-0982',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.836129,
+    longitude: -64.015131,
     atualizacao: '2025-03-15T00:10:05.118Z',
     endereco: {
       cep: 76834899,
@@ -13080,8 +13088,8 @@ export const dataCoordenadas: Coordenada[] = [
     diasCulto: {
       cultos: [
         {
-          dia: 1,
-          horario: '14:00',
+          dia: 7,
+          horario: '15:00',
         },
       ],
       reuniaoJovemMenores: [],
