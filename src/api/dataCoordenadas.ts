@@ -4637,7 +4637,7 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
-  // Candeias Do Jamari
+  // Cidade Candeias Do Jamari
   {
     id: 'c247799a-e747-4c73-8b41-f9b1e2de799c',
     idExterno: '17675',
@@ -5013,7 +5013,7 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
-  // Castanheiras
+  // Cidade Castanheiras
   {
     id: '46e0b9bf-b6db-482d-81a1-f8d2edbf57e9',
     idExterno: '17499',
@@ -11664,7 +11664,7 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
-  // Porto Velho
+  // Cidade Porto Velho
   {
     id: '1ed7f5d7-d85d-4ba8-8d8e-59ae85713b9b',
     idExterno: '17446',
@@ -12589,8 +12589,8 @@ export const dataCoordenadas: Coordenada[] = [
     idExterno: '17857',
     nome: 'Nova Esperança',
     segundoNome: 'BR-26-0761',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.7067461,
+    longitude: -63.875404,
     atualizacao: '2025-03-14T23:43:34.567Z',
     endereco: {
       cep: 76823028,
@@ -17668,17 +17668,18 @@ export const dataCoordenadas: Coordenada[] = [
       reuniaoJovemMenores: [],
     },
   },
+  // Cidade Vista Alegre Do Abunã
   {
     id: 'd3e96038-6fc4-4974-bfb1-672fe73a1f8d',
     idExterno: '17611',
     nome: 'Rua Alberto Loeblein, s/n',
     segundoNome: 'CENTRAL',
-    latitude: 0,
-    longitude: 0,
+    latitude: -9.6548998,
+    longitude: -65.744045,
     atualizacao: '2025-03-14T23:18:46.988Z',
     endereco: {
       cep: 76846000,
-      logradouro: '',
+      logradouro: 'Rua Alberto Loeblein',
       numero: 0,
       cidade: 'Vista Alegre Do Abunã',
       uf: 'RO',
