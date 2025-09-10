@@ -1,3 +1,4 @@
+import { normalizeString } from '@/src/utils/convert/normalizeString'
 import { dataCoordenadas } from '@/src/api/dataCoordenadas'
 import { Coordenada } from '@/src/models/Coordenada'
 
@@ -30,6 +31,24 @@ export const serviceCoordenada = {
         }
 
         resolve(results)
+      }, 100)
+    })
+  },
+  searchLocalCity: async ({ search }: { search: string }): Promise<Coordenada[]> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let results = dataCoordenadas
+
+        function filtrar(results: Coordenada[], search: string) {
+          const searchNorm = normalizeString(search)
+          return results.filter(
+            (item) =>
+              normalizeString(item.nome).includes(searchNorm) ||
+              normalizeString(item.segundoNome).includes(searchNorm) ||
+              normalizeString(item.endereco?.cidade).includes(searchNorm),
+          )
+        }
+        resolve(filtrar(results, search))
       }, 100)
     })
   },
