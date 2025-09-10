@@ -13,7 +13,8 @@ export const CoordenadasSearch: React.FC<Props> = ({ setCoordenadas, coordenadas
     const resultadosFiltrados = coordenadasSearch.filter(
       (coordenada) =>
         coordenada?.nome.toLowerCase().includes(text.toLowerCase()) ||
-        coordenada?.segundoNome?.toLowerCase().includes(text.toLowerCase()),
+        coordenada?.segundoNome?.toLowerCase().includes(text.toLowerCase()) ||
+        coordenada?.endereco?.cidade?.toLowerCase().includes(text.toLowerCase()),
     )
 
     setCoordenadas(resultadosFiltrados)
