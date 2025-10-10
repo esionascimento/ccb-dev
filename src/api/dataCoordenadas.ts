@@ -12499,10 +12499,11 @@ export const dataCoordenadas: Coordenada[] = [
   {
     id: '4fde0b7e-9a68-49d3-9e1a-2bc02e91b8ce',
     idExterno: '17650',
-    nome: 'Bom Cerazinho',
+    // Bom Cerazinho
+    nome: 'Bom Será',
     segundoNome: 'BR-26-0552',
-    latitude: 0,
-    longitude: 0,
+    latitude: -8.540229,
+    longitude: -63.54475,
     atualizacao: '2025-03-14T23:22:32.205Z',
     endereco: {
       cep: 76834899,
